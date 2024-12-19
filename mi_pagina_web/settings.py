@@ -1,30 +1,84 @@
-from dotenv import load_dotenv
-from decouple import config
-from pathlib import Path
-from django.utils.translation import gettext_lazy as _
 import os
+from decouple import config  # Asegúrate de que esté instalado con `pip install python-decouple`
+from pathlib import Path
+from dotenv import load_dotenv  # Asegúrate de importar load_dotenv
 import dj_database_url
 
 # Determinar el entorno (development o production)
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development').lower()
-if DJANGO_ENV == 'production':
-    load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / '.env.production')
-else:
-    load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent / '.env.development')
 
 # Base Directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET KEY
+# ===========================
+# Cargar las variables de entorno (usamos python-decouple para gestionarlas)
+# ===========================
+load_dotenv(dotenv_path=BASE_DIR / '.env')  # Cargar el archivo .env que contiene las configuraciones para ambos entornos
+
+# ===========================
+# Configuración de seguridad
+# ===========================
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 
-# Debug Mode
 DEBUG = config('DEBUG', default=True, cast=bool)
 
-# Allowed Hosts
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
-# Application definition 
+# ===========================
+# Configuración de la Base de Datos
+# ===========================
+DATABASES = {
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL', cast=str)
+    )
+}
+
+# ===========================
+# Configuración de Correo Electrónico
+# ===========================
+EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_HOST = config('EMAIL_HOST', default='smtp.office365.com')
+EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+
+# ===========================
+# Seguridad de Cookies y CSRF
+# ===========================
+SESSION_COOKIE_SECURE = DJANGO_ENV == 'production'
+CSRF_COOKIE_SECURE = DJANGO_ENV == 'production'
+
+# ===========================
+# Seguridad HSTS (solo en producción)
+# ===========================
+SECURE_HSTS_SECONDS = 31536000 if DJANGO_ENV == 'production' else 0
+SECURE_HSTS_INCLUDE_SUBDOMAINS = DJANGO_ENV == 'production'
+SECURE_HSTS_PRELOAD = DJANGO_ENV == 'production'
+SECURE_SSL_REDIRECT = DJANGO_ENV == 'production'
+
+# ===========================
+# Otras configuraciones
+# ===========================
+CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='http://127.0.0.1,http://localhost').split(',')
+
+# ===========================
+# Configuración de Archivos Estáticos
+# ===========================
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# ===========================
+# Configuración de Archivos de Medios
+# ===========================
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# ===========================
+# Aplicaciones Instaladas
+# ===========================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -67,14 +121,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mi_pagina_web.wsgi.application'
 
-# Database configuration
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', cast=str)
-    )
-}
-
-# Password validation
+# ===========================
+# Validación de Contraseñas
+# ===========================
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -90,28 +139,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
+# ===========================
+# Internacionalización
+# ===========================
 LANGUAGE_CODE = 'es'  # Idioma en español
 TIME_ZONE = 'America/Mexico_City'  # Zona horaria de México
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-# Static files (CSS, JavaScript, images)
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']  # Directorios para archivos estáticos personalizados
-STATIC_ROOT = BASE_DIR / 'staticfiles'  # Directorio para archivos estáticos en producción
-
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
-
-# Configuración adicional de cookies
-CSRF_COOKIE_SECURE = DJANGO_ENV == 'production'
-SESSION_COOKIE_SECURE = DJANGO_ENV == 'production'
-
-# Configuración adicional
-SECURE_SSL_REDIRECT = DJANGO_ENV == 'production'
-SECURE_HSTS_SECONDS = 31536000 if DJANGO_ENV == 'production' else 0
-SECURE_HSTS_INCLUDE_SUBDOMAINS = DJANGO_ENV == 'production'
-SECURE_HSTS_PRELOAD = DJANGO_ENV == 'production'
