@@ -3,6 +3,13 @@ from decouple import config  # Asegúrate de que esté instalado con `pip instal
 from pathlib import Path
 from dotenv import load_dotenv  # Asegúrate de importar load_dotenv
 import dj_database_url
+import environ
+
+# Inicializar environ
+env = environ.Env()
+
+# Leer el archivo .env.consolidado
+environ.Env.read_env(os.path.join(BASE_DIR, '.env.consolidado'))
 
 # Determinar el entorno (development o production)
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'development').lower()
@@ -21,11 +28,14 @@ print("Dotenv loaded:", os.getenv('DATABASE_URL'))  # Esto debería imprimir la 
 # ===========================
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
 
+# Usamos una lógica para que se cargue la clave secreta correspondiente según el entorno
+DJANGO_SECRET_KEY = config('DJANGO_SECRET_KEY_DEV') if DJANGO_ENV == 'development' else config('DJANGO_SECRET_KEY_PROD')
+
 # Imprimir la clave secreta para verificar que está bien cargada (solo en desarrollo)
 if DJANGO_ENV == 'development':
     print("SECRET_KEY:", SECRET_KEY)
 
-DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
 
