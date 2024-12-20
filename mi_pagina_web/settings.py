@@ -13,12 +13,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ===========================
 # Cargar las variables de entorno (usamos python-decouple para gestionarlas)
 # ===========================
-load_dotenv(dotenv_path=BASE_DIR / '.env')  # Cargar el archivo .env que contiene las configuraciones para ambos entornos
+load_dotenv(dotenv_path=BASE_DIR / '.env.consolidado')  # Cargar el archivo .env que contiene las configuraciones para ambos entornos
+print("Dotenv loaded:", os.getenv('DATABASE_URL'))  # Esto debería imprimir la URL de la base de datos si se carga correctamente
 
 # ===========================
 # Configuración de seguridad
 # ===========================
 SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
+
+# Imprimir la clave secreta para verificar que está bien cargada (solo en desarrollo)
+if DJANGO_ENV == 'development':
+    print("SECRET_KEY:", SECRET_KEY)
 
 DEBUG = config('DEBUG', default=True, cast=bool)
 
