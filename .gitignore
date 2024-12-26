@@ -19,3 +19,81 @@ staticfiles/
 
 # Archivos y carpetas de Visual Studio Code
 .vscode/
+# ==========================
+# 📦 Entornos Virtuales
+# ==========================
+venv/
+.env*
+.env.consolidado
+.env.local
+
+# ==========================
+# 🛠️ Archivos de configuración y bases de datos locales
+# ==========================
+db.sqlite3
+db.sqlite3-journal
+*.log
+*.pot
+*.bak
+
+# ==========================
+# 🐍 Archivos compilados de Python
+# ==========================
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+
+# ==========================
+# 📊 Archivos de migración Django
+# ==========================
+*/migrations/*.py
+*/migrations/*.pyc
+!*/migrations/__init__.py
+
+# ==========================
+# 📁 Archivos generados estáticos y de medios
+# ==========================
+staticfiles/
+media/
+media/*
+
+# ==========================
+# 💻 Configuración específica de editores/IDEs
+# ==========================
+.vscode/
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# ==========================
+# 🗂️ Archivos del Sistema Operativo
+# ==========================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ==========================
+# 🚀 Despliegue en Plataformas
+# ==========================
+Procfile
+*.tar.gz
+*.zip
+
+# ==========================
+# 🧹 Otros Archivos y Carpetas no Deseados
+# ==========================
+__MACOSX/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ==========================
+# 📂 Ignorar el repositorio anidado
+# ==========================
+mi_pagina_web/
