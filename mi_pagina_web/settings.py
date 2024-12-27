@@ -1,99 +1,93 @@
 import os
-from decouple import config  # Asegúrate de que esté instalado con `pip install python-decouple`
 from pathlib import Path
-from dotenv import load_dotenv  # Asegúrate de importar load_dotenv
-import dj_database_url
 import environ
 
-# Inicializar environ
-env = environ.Env()
+# ==========================
+# 📁 BASE DIRECTORY
+# ==========================
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ==========================
+# 🔑 INICIALIZAR ENVIRON
+# ==========================
+env = environ.Env(
+    DEBUG=(bool, False)  # Por defecto, DEBUG estará en False si no se define en el archivo .env
+)
 
 # Leer el archivo .env.consolidado
 environ.Env.read_env(os.path.join(BASE_DIR, '.env.consolidado'))
 
-# Determinar el entorno (development o production)
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'development').lower()
+# ==========================
+# 🔒 CONFIGURACIÓN DE SEGURIDAD
+# ==========================
+SECRET_KEY = env('DJANGO_SECRET_KEY', default='fallback-secret-key')
 
-# Base Directory
-BASE_DIR = Path(__file__).resolve().parent.parent
+# 🚀 Modo de depuración
+DEBUG = env.bool('DEBUG', default=True)  # ⚠️ False en producción
 
-# ===========================
-# Cargar las variables de entorno (usamos python-decouple para gestionarlas)
-# ===========================
-load_dotenv(dotenv_path=BASE_DIR / '.env.consolidado')  # Cargar el archivo .env que contiene las configuraciones para ambos entornos
-print("Dotenv loaded:", os.getenv('DATABASE_URL'))  # Esto debería imprimir la URL de la base de datos si se carga correctamente
+# 🌐 Dominios permitidos
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'])  # ⚠️ Ajustar en producción
 
-# ===========================
-# Configuración de seguridad
-# ===========================
-SECRET_KEY = config('DJANGO_SECRET_KEY', default='fallback-secret-key')
-
-# Usamos una lógica para que se cargue la clave secreta correspondiente según el entorno
-DJANGO_SECRET_KEY = config('DJANGO_SECRET_KEY_DEV') if DJANGO_ENV == 'development' else config('DJANGO_SECRET_KEY_PROD')
-
-# Imprimir la clave secreta para verificar que está bien cargada (solo en desarrollo)
-if DJANGO_ENV == 'development':
-    print("SECRET_KEY:", SECRET_KEY)
-
-DEBUG = config('DEBUG', default=False, cast=bool)
-
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='').split(',')
-
-# ===========================
-# Configuración de la Base de Datos
-# ===========================
+# ==========================
+# 🛠️ CONFIGURACIÓN DE LA BASE DE DATOS
+# ==========================
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL', cast=str)
-    )
+    'default': env.db(default='sqlite:///db.sqlite3')  # SQLite por defecto, usar PostgreSQL en producción
 }
 
-# ===========================
-# Configuración de Correo Electrónico
-# ===========================
-EMAIL_BACKEND = config('EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
-EMAIL_HOST = config('EMAIL_HOST', default='smtp.office365.com')
-EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
-EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
-EMAIL_USE_SSL = config('EMAIL_USE_SSL', default=False, cast=bool)
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+# ==========================
+# 📧 CONFIGURACIÓN DE CORREO ELECTRÓNICO
+# ==========================
+EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
+EMAIL_HOST = env('EMAIL_HOST', default='smtp.office365.com')
+EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=False)
+EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
 
-# ===========================
-# Seguridad de Cookies y CSRF
-# ===========================
-SESSION_COOKIE_SECURE = DJANGO_ENV == 'production'
-CSRF_COOKIE_SECURE = DJANGO_ENV == 'production'
+# ==========================
+# 🔐 SEGURIDAD DE COOKIES Y CSRF
+# ==========================
+# ⚠️ En desarrollo, ambas deben ser False
+SESSION_COOKIE_SECURE = DEBUG == False  # ⚠️ Cambiar a True en producción
+CSRF_COOKIE_SECURE = DEBUG == False  # ⚠️ Cambiar a True en producción
 
-# ===========================
-# Seguridad HSTS (solo en producción)
-# ===========================
-SECURE_HSTS_SECONDS = 31536000 if DJANGO_ENV == 'production' else 0
-SECURE_HSTS_INCLUDE_SUBDOMAINS = DJANGO_ENV == 'production'
-SECURE_HSTS_PRELOAD = DJANGO_ENV == 'production'
-SECURE_SSL_REDIRECT = DJANGO_ENV == 'production'
+# ⚠️ Forzar solo HTTP en desarrollo para evitar errores HTTPS
+SECURE_SSL_REDIRECT = DEBUG == False  # ⚠️ Cambiar a True en producción
 
-# ===========================
-# Otras configuraciones
-# ===========================
-CSRF_TRUSTED_ORIGINS = config('CSRF_TRUSTED_ORIGINS', default='http://127.0.0.1,http://localhost').split(',')
+# ==========================
+# 🔐 SEGURIDAD HSTS (SOLO EN PRODUCCIÓN)
+# ==========================
+# ⚠️ Ajusta estas opciones en producción
+SECURE_HSTS_SECONDS = 0 if DEBUG else 31536000  # ⚠️ 1 año en producción
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG  # ⚠️ True en producción
+SECURE_HSTS_PRELOAD = not DEBUG  # ⚠️ True en producción
 
-# ===========================
-# Configuración de Archivos Estáticos
-# ===========================
+# ==========================
+# 🛡️ CONFIGURACIÓN DE CSRF Trusted Origins
+# ==========================
+CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
+    'http://127.0.0.1',
+    'http://localhost'
+])  # ⚠️ Agregar dominios en producción
+
+# ==========================
+# 🗂️ CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS
+# ==========================
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# ===========================
-# Configuración de Archivos de Medios
-# ===========================
+# ==========================
+# 🖼️ CONFIGURACIÓN DE ARCHIVOS DE MEDIOS
+# ==========================
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# ===========================
-# Aplicaciones Instaladas
-# ===========================
+# ==========================
+# 🚀 APLICACIONES INSTALADAS
+# ==========================
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -101,10 +95,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.postgres',  # Funcionalidades específicas de PostgreSQL
+    'django.contrib.postgres',
     'articulos',  # Tu aplicación personalizada
 ]
 
+# ==========================
+# 🛡️ MIDDLEWARE
+# ==========================
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -115,12 +112,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# ==========================
+# 🛠️ CONFIGURACIÓN DE URLS Y PLANTILLAS
+# ==========================
 ROOT_URLCONF = 'mi_pagina_web.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],  # Directorio para plantillas personalizadas
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,9 +136,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mi_pagina_web.wsgi.application'
 
-# ===========================
-# Validación de Contraseñas
-# ===========================
+# ==========================
+# 🔑 VALIDACIÓN DE CONTRASEÑAS
+# ==========================
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -154,11 +154,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# ===========================
-# Internacionalización
-# ===========================
-LANGUAGE_CODE = 'es'  # Idioma en español
-TIME_ZONE = 'America/Mexico_City'  # Zona horaria de México
+# ==========================
+# 🌎 INTERNACIONALIZACIÓN
+# ==========================
+LANGUAGE_CODE = 'es'
+TIME_ZONE = 'America/Mexico_City'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
+
+# ==========================
+# ✅ ARCHIVOS ESTÁTICOS EN PRODUCCIÓN
+# ==========================
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
