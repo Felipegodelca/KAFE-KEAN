@@ -38,7 +38,7 @@ parso==0.8.2
 pickleshare==0.7.5
 platformdirs==4.3.6
 prompt-toolkit==3.0.18
-pyzmq==22.0.3
+pyzmq==25.1.2
 Pygments==2.9.0
 traitlets==5.0.5
 typing_extensions==4.12.2
@@ -57,3 +57,9 @@ six==1.16.0
 matplotlib-inline==0.1.2
 colorama==0.4.4
 python-dateutil==2.8.1
+
+# ==========================
+# Herramientas de construccion adecuadas
+# ==========================
+wheel==0.45.1
+setuptools==75.6.0
