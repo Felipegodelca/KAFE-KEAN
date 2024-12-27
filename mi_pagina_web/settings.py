@@ -20,43 +20,43 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env.consolidado'))
 # ==========================
 # 🔒 CONFIGURACIÓN DE SEGURIDAD
 # ==========================
-SECRET_KEY = env('DJANGO_SECRET_KEY', default='fallback-secret-key')
+SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # 🚀 Modo de depuración
-DEBUG = env.bool('DEBUG', default=False)  # ⚠️ False en producción
+DEBUG = env.bool('DEBUG', default=False)
 
 # 🌐 Dominios permitidos
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'])  # ⚠️ Ajustar en producción
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['127.0.0.1', 'localhost'])
 
 # ==========================
 # 🛠️ CONFIGURACIÓN DE LA BASE DE DATOS
 # ==========================
 DATABASES = {
-    'default': env.db(default='sqlite:///db.sqlite3')  # SQLite por defecto, usar PostgreSQL en producción
+    'default': env.db()
 }
 
 # ==========================
 # 📧 CONFIGURACIÓN DE CORREO ELECTRÓNICO
 # ==========================
 EMAIL_BACKEND = env('EMAIL_BACKEND', default='django.core.mail.backends.console.EmailBackend')
-EMAIL_HOST = env('EMAIL_HOST', default='smtp.zoho.com')
-EMAIL_PORT = env.int('EMAIL_PORT', default=587)
-EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
-EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL', default=False)
-EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='felipegodelca@kafekean.com')
-EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='')
+EMAIL_HOST = env('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT')
+EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS')
+EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL')
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # ==========================
 # 🔐 SEGURIDAD DE COOKIES Y CSRF
 # ==========================
-SESSION_COOKIE_SECURE = not DEBUG  # ⚠️ Cambiar a True en producción
-CSRF_COOKIE_SECURE = not DEBUG  # ⚠️ Cambiar a True en producción
-SECURE_SSL_REDIRECT = not DEBUG  # ⚠️ Cambiar a True en producción
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
+SECURE_SSL_REDIRECT = not DEBUG
 
 # ==========================
 # 🔐 SEGURIDAD HSTS (SOLO EN PRODUCCIÓN)
 # ==========================
-SECURE_HSTS_SECONDS = 0 if DEBUG else 31536000  # ⚠️ 1 año en producción
+SECURE_HSTS_SECONDS = 31536000 if not DEBUG else 0
 SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
 SECURE_HSTS_PRELOAD = not DEBUG
 
@@ -66,7 +66,7 @@ SECURE_HSTS_PRELOAD = not DEBUG
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
     'http://127.0.0.1',
     'http://localhost'
-])  # ⚠️ Agregar dominios en producción
+])
 
 # ==========================
 # 🗂️ CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS
@@ -163,3 +163,11 @@ USE_TZ = True
 # ✅ ARCHIVOS ESTÁTICOS EN PRODUCCIÓN
 # ==========================
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ==========================
+# 🔗 CONFIGURACIÓN ADICIONAL
+# ==========================
+if DEBUG:
+    INTERNAL_IPS = ['127.0.0.1']
+    INSTALLED_APPS += ['debug_toolbar']
+    MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
