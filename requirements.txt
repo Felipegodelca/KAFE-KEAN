@@ -38,7 +38,7 @@ parso==0.8.2
 pickleshare==0.7.5
 platformdirs==4.3.6
 prompt-toolkit==3.0.18
-pyzmq==25.1.2
+pyzmq==24.0.1
 Pygments==2.9.0
 traitlets==5.0.5
 typing_extensions==4.12.2
