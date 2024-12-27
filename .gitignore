@@ -93,7 +93,6 @@ yarn-error.log*
 pip-log.txt
 pip-delete-this-directory.txt
 
-# ==========================
-# 📂 Ignorar el repositorio anidado
-# ==========================
-mi_pagina_web/
+# Ignorar archivos específicos, no todo el directorio
+mi_pagina_web/__pycache__/
+mi_pagina_web/*.pyc
