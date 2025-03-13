@@ -1,0 +1,107 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Crear Artículo - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<p>Prueba: {{ imagen_inspiradora }}</p>
+
+<div class="container py-5">
+    <!-- ✅ Encabezado Principal -->
+    <header class="text-center mb-4">
+        <h1 class="display-5 text-primary">{% trans "Crear un Nuevo Artículo" %}</h1>
+        <p class="lead text-muted">
+            {% trans "Comparte tus ideas, reflexiones o investigaciones en filosofía, psicología y negocios." %}
+        </p>
+    </header>
+
+    <!-- ✅ Formulario para Crear Artículo -->
+    <section class="shadow-lg p-4 rounded bg-light">
+        <h2 class="text-center text-primary mb-4">{% trans "Publica tu Artículo" %}</h2>
+        <form id="article-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row">
+                {% for field in form %}
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label fw-bold">{{ field.label }}</label>
+                        {{ field|add_class:"form-control" }} 
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="text-danger mt-2">
+                                {% for error in field.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- ✅ Botón de Publicar con Modal de Confirmación -->
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#confirmModal">
+                    {% trans "Publicar Artículo" %}
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ✅ Modal de Confirmación -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary">{% trans "Confirmar Publicación" %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Cerrar' %}"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans "¿Estás seguro de que deseas publicar este artículo?" %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        {% trans "Cancelar" %}
+                    </button>
+                    <button type="submit" class="btn btn-success" id="confirmPublish">
+                        {% trans "Sí, Publicar" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Sección de Consejos para Redacción -->
+    <section class="mt-5 text-center">
+        <h3 class="text-primary fw-bold">{% trans "Consejos para un Gran Artículo" %}</h3>
+        <ul class="list-unstyled text-muted mt-3">
+            <li>✅ {% trans "Sé claro y preciso en tu mensaje." %}</li>
+            <li>✅ {% trans "Usa ejemplos y experiencias personales." %}</li>
+            <li>✅ {% trans "Cuida la gramática y la ortografía." %}</li>
+            <li>✅ {% trans "Asegúrate de que tu contenido aporte valor." %}</li>
+        </ul>
+    </section>
+
+    <!-- ✅ Enlace para Volver a la Lista de Artículos -->
+    <div class="text-center mt-4">
+        <a href="{% url 'articulos:lista_articulos' %}" class="btn btn-outline-secondary">
+            {% trans "Volver a la Lista de Artículos" %}
+        </a>
+    </div>
+</div>
+
+<!-- ✅ Script Adicional -->
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.info('{% trans "Formulario de creación de artículo cargado correctamente." %}');
+
+        // Evento para confirmar la publicación
+        document.getElementById("confirmPublish").addEventListener("click", function() {
+            document.getElementById("article-form").submit();
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

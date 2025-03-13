@@ -1,0 +1,123 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Editar Artículo - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- ✅ Encabezado Principal -->
+    <header class="text-center mb-4">
+        <h1 class="display-5 text-primary">{% trans "Editar Artículo" %}</h1>
+        <p class="lead text-muted">
+            {% trans "Modifica el artículo y asegúrate de que toda la información sea precisa y actualizada." %}
+        </p>
+    </header>
+
+    <!-- ✅ Formulario para Editar el Artículo -->
+    <section class="shadow-lg p-4 rounded bg-light">
+        <h2 class="text-center text-primary mb-4">{% trans "Actualizar Detalles del Artículo" %}</h2>
+        <form id="edit-article-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="row">
+                {% for field in form %}
+                    <div class="col-md-6 mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label fw-bold">{{ field.label }}</label>
+                        {{ field|add_class:"form-control" }}
+                        {% if field.help_text %}
+                            <small class="form-text text-muted">{{ field.help_text }}</small>
+                        {% endif %}
+                        {% if field.errors %}
+                            <div class="text-danger mt-2">
+                                {% for error in field.errors %}
+                                    <p class="error">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- ✅ Mensaje de Cambios no Guardados -->
+            <div id="unsaved-changes" class="alert alert-warning text-center d-none">
+                {% trans "Tienes cambios sin guardar." %}
+            </div>
+
+            <!-- ✅ Botones de Acción -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg" aria-label="{% trans 'Guardar los cambios realizados al artículo' %}">
+                    {% trans "Guardar Cambios" %}
+                </button>
+                <button type="button" class="btn btn-secondary btn-lg" data-bs-toggle="modal" data-bs-target="#cancelModal">
+                    {% trans "Cancelar" %}
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ✅ Modal de Confirmación para Cancelar -->
+    <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-primary">{% trans "Confirmar Cancelación" %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Cerrar' %}"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{% trans "¿Estás seguro de que deseas cancelar los cambios?" %}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        {% trans "No, Seguir Editando" %}
+                    </button>
+                    <a href="{% url 'articulos:detalle_articulo' articulo.id %}" class="btn btn-danger">
+                        {% trans "Sí, Cancelar" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Información Adicional -->
+    <section class="text-center mt-4">
+        <p class="text-muted">{% trans "Asegúrate de revisar los detalles antes de guardar los cambios." %}</p>
+    </section>
+
+    <!-- ✅ Navegación Adicional -->
+    <div class="text-center mt-4">
+        <a href="{% url 'articulos:lista_articulos' %}" class="btn btn-outline-secondary">
+            {% trans "Volver a la Lista de Artículos" %}
+        </a>
+        <a href="{% url 'inicio' %}" class="btn btn-outline-secondary">
+            {% trans "Volver al Inicio" %}
+        </a>
+    </div>
+</div>
+
+<!-- ✅ Script Adicional -->
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.info('{% trans "Formulario de edición de artículo cargado correctamente." %}');
+
+        let formChanged = false;
+        const formFields = document.querySelectorAll('#edit-article-form input, #edit-article-form textarea');
+        const unsavedMessage = document.getElementById('unsaved-changes');
+
+        formFields.forEach(field => {
+            field.addEventListener('input', () => {
+                formChanged = true;
+                unsavedMessage.classList.remove('d-none');
+            });
+        });
+
+        window.addEventListener('beforeunload', function (e) {
+            if (formChanged) {
+                e.preventDefault();
+                e.returnValue = '{% trans "Tienes cambios sin guardar. ¿Estás seguro de que deseas salir?" %}';
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

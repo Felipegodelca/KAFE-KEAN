@@ -1,0 +1,119 @@
+{% extends 'articulos/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Detalles del Tipo de Cambio" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- ✅ Encabezado -->
+    <header class="text-center mb-5">
+        <h1 class="h2 text-primary fw-bold">{% trans "Detalles del Tipo de Cambio" %}</h1>
+        <p class="lead text-secondary">{% trans "Consulta la información detallada sobre los tipos de cambio." %}</p>
+    </header>
+
+    <!-- ✅ Tabla Detallada de Tipos de Cambio -->
+    <section class="exchange-details">
+        <div class="table-responsive">
+            <table class="exchange-table table table-hover text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>{% trans "Moneda" %}</th>
+                        <th>{% trans "Compra" %}</th>
+                        <th>{% trans "Venta" %}</th>
+                        <th>{% trans "Variación (%)" %}</th>
+                    </tr>
+                </thead>
+                <tbody id="exchange-data">
+                    {% if tipos_de_cambio %}
+                        {% for tipo in tipos_de_cambio %}
+                        <tr>
+                            <td class="fw-bold">{{ tipo.currency }}</td>
+                            <td>${{ tipo.buy|floatformat:2 }}</td>
+                            <td>${{ tipo.sell|floatformat:2 }}</td>
+                            <td>
+                                {% if tipo.variation > 0 %}
+                                    <span class="text-success fw-bold">▲ {{ tipo.variation|floatformat:2 }}%</span>
+                                {% elif tipo.variation < 0 %}
+                                    <span class="text-danger fw-bold">▼ {{ tipo.variation|floatformat:2 }}%</span>
+                                {% else %}
+                                    <span class="text-muted fw-bold">{% trans "Sin variación" %}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                {% trans "No hay datos disponibles en este momento." %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ✅ Fecha de Actualización -->
+    <section class="exchange-update text-center mt-4">
+        <p class="text-secondary">
+            <strong>{% trans "Fecha de actualización:" %}</strong> 
+            {{ fecha|date:"d M Y H:i"|default:_("No disponible") }}
+        </p>
+    </section>
+
+    <!-- ✅ Botón de Regreso -->
+    <div class="text-center mt-5">
+        <a href="{% url 'articulos:tipos_cambio' %}" class="btn btn-lg btn-primary shadow-lg">
+            {% trans "Regresar a Tipos de Cambio" %}
+        </a>
+    </div>
+</div>
+
+<!-- ✅ Script para Actualización en Tiempo Real -->
+<script>
+    // Función para actualizar los tipos de cambio en tiempo real usando la API
+    async function actualizarTiposDeCambio() {
+        try {
+            const response = await fetch('http://apilayer.net/api/live?access_key=1c4d9dde04fcdfc592d14eadeb62d757&currencies=EUR,GBP,CAD,PLN&source=USD&format=1');
+            const data = await response.json();
+            const exchangeData = data.quotes;
+
+            // Actualizar la tabla con los nuevos datos
+            let tbody = document.getElementById('exchange-data');
+            tbody.innerHTML = '';  // Limpiar la tabla antes de agregar los nuevos datos
+
+            for (let currency in exchangeData) {
+                const buy = exchangeData[currency];
+                const sell = buy * 1.02;  // Precio de venta estimado (ajustable según lógica)
+
+                let variation = ((sell - buy) / buy) * 100;
+                let variationClass = variation > 0 ? 'text-success' : variation < 0 ? 'text-danger' : 'text-muted';
+                let variationSymbol = variation > 0 ? '▲' : variation < 0 ? '▼' : 'Sin variación';
+
+                // Crear la fila de la tabla
+                let row = `<tr>
+                            <td class="fw-bold">${currency}</td>
+                            <td>${buy.toFixed(2)}</td>
+                            <td>${sell.toFixed(2)}</td>
+                            <td><span class="${variationClass} fw-bold">${variationSymbol} ${Math.abs(variation).toFixed(2)}%</span></td>
+                        </tr>`;
+
+                tbody.innerHTML += row;
+            }
+
+            // Mostrar la fecha de la última actualización
+            let fecha = new Date();
+            document.querySelector('.exchange-update p').innerHTML = `<strong>{% trans "Fecha de actualización:" %}</strong> ${fecha.toLocaleString()}`;
+        } catch (error) {
+            console.error('Error al obtener los tipos de cambio:', error);
+        }
+    }
+
+    // Llamar a la función cada 30 segundos para actualizar los datos
+    setInterval(actualizarTiposDeCambio, 30000);
+
+    // Llamar a la función una vez al cargar la página
+    actualizarTiposDeCambio();
+</script>
+
+{% endblock %}

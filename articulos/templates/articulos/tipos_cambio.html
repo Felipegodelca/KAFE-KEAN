@@ -1,0 +1,101 @@
+{% load i18n %}
+
+<section class="section-exchange py-5">
+    <div class="container">
+        <!-- ✅ Título y Descripción -->
+        <header class="text-center mb-4">
+            <h2 class="h3 text-primary fw-bold">{% trans "Tipos de Cambio Actualizados" %}</h2>
+            <p class="subtitle lead text-secondary">{% trans "Consulta los últimos tipos de cambio de las principales monedas en tiempo real." %}</p>
+        </header>
+
+        <!-- ✅ Tabla de Tipos de Cambio -->
+        <div class="exchange-table-container table-responsive my-4">
+            <table class="exchange-table table table-hover text-center">
+                <thead class="table-dark">
+                    <tr>
+                        <th>{% trans "Moneda" %}</th>
+                        <th>{% trans "Compra" %}</th>
+                        <th>{% trans "Venta" %}</th>
+                        <th>{% trans "Variación (%)" %}</th>
+                    </tr>
+                </thead>
+                <tbody id="exchange-data">
+                    {% if tipos_de_cambio %}
+                        {% for tipo in tipos_de_cambio %}
+                        <tr>
+                            <td class="fw-bold">{{ tipo.currency }}</td>
+                            <td>${{ tipo.buy|floatformat:2 }}</td>
+                            <td>${{ tipo.sell|floatformat:2 }}</td>
+                            <td>
+                                {% if tipo.variation > 0 %}
+                                    <span class="text-success fw-bold">▲ {{ tipo.variation|floatformat:2 }}%</span>
+                                {% elif tipo.variation < 0 %}
+                                    <span class="text-danger fw-bold">▼ {{ tipo.variation|floatformat:2 }}%</span>
+                                {% else %}
+                                    <span class="text-muted fw-bold">{% trans "Sin variación" %}</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">
+                                {% trans "No hay datos disponibles en este momento." %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ✅ Fecha de Actualización -->
+        <div class="exchange-update text-center mt-4">
+            <p class="text-secondary">
+                <strong>{% trans "Fecha de actualización:" %}</strong> 
+                {{ fecha|date:"d M Y H:i"|default:_("No disponible") }}
+            </p>
+        </div>
+
+        <!-- ✅ Botón de Detalles -->
+        <div class="text-center mt-4">
+            <a href="{% url 'articulos:detalle_tipos_cambio' %}" class="btn btn-lg btn-primary shadow-lg">
+                {% trans "Ver Detalles Completos" %}
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ✅ Script para Actualización en Tiempo Real -->
+<script>
+    // Función para actualizar los tipos de cambio cada cierto tiempo
+    function updateExchangeRates() {
+        fetch("{% url 'articulos:detalle_tipos_cambio' %}")
+        .then(response => response.json())
+        .then(data => {
+            let tiposDeCambio = data.tipos_de_cambio;
+            let exchangeDataContainer = document.getElementById('exchange-data');
+            exchangeDataContainer.innerHTML = "";  // Limpiar datos previos
+
+            tiposDeCambio.forEach(tipo => {
+                let row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="fw-bold">${tipo.currency}</td>
+                    <td>${tipo.buy.toFixed(2)}</td>
+                    <td>${tipo.sell.toFixed(2)}</td>
+                    <td>
+                        ${tipo.variation > 0 ? 
+                            `<span class="text-success fw-bold">▲ ${tipo.variation.toFixed(2)}%</span>` : 
+                            tipo.variation < 0 ? 
+                            `<span class="text-danger fw-bold">▼ ${tipo.variation.toFixed(2)}%</span>` : 
+                            `<span class="text-muted fw-bold">{% trans "Sin variación" %}</span>`
+                        }
+                    </td>
+                `;
+                exchangeDataContainer.appendChild(row);
+            });
+        });
+    }
+
+    setInterval(updateExchangeRates, 30000);  // Actualizar cada 30 segundos
+    updateExchangeRates();  // Cargar los datos al inicio
+</script>

@@ -1,0 +1,140 @@
+{% load static i18n custom_filters %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% trans 'KAFE KEAN - Explora artículos sobre filosofía, psicología y negocios. Inspira y reflexiona con contenido único.' %}">
+    <meta name="keywords" content="{% trans 'filosofía, psicología, negocios, reflexión, artículos, KAFE KEAN' %}">
+    <meta name="author" content="KAFE KEAN">
+    <meta property="og:title" content="KAFE KEAN">
+    <meta property="og:description" content="{% trans 'Explora artículos únicos sobre filosofía, psicología y negocios en KAFE KEAN.' %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'img/kafe_kean_logo.jpg' %}">
+    <meta property="og:image:alt" content="{% trans 'KAFE KEAN Logo' %}">
+
+    <title>{% block title %}KAFE KEAN{% endblock %}</title>
+
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <!-- ✅ Encabezado Principal -->
+    <header class="site-header">
+        <div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
+            <!-- Contenedor del Logotipo -->
+            <div class="logo-container">
+                <a href="{% url 'inicio' %}" aria-label="{% trans 'Ir al inicio' %}">
+                    <img src="{% static 'img/kafe_kean_logo.jpg' %}" 
+                         alt="{% trans 'KAFE KEAN Logo' %}" 
+                         class="site-logo" 
+                         style="max-height: 100px;">
+                </a>
+            </div>
+
+            <!-- Imagen Inspiradora -->
+            <div class="inspirational-image" style="text-align: center; margin-left: 20px;">
+                {% if imagen_inspiradora %}
+                    <img src="{{ imagen_inspiradora }}" alt="{% trans 'Imagen Inspiradora' %}" 
+                         style="
+                            max-width: 50%; 
+                            height: auto; 
+                            border-radius: 10px; 
+                            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+                            border: 2px solid #ddd;
+                         ">
+                {% else %}
+                    <p class="text-muted">{% trans "Inspiración diaria no disponible." %}</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Navegación -->
+        <nav class="site-navigation" aria-label="{% trans 'Navegación principal' %}">
+            <ul class="nav-links vertical-menu" style="list-style: none; padding: 0;">
+                <li class="{{ 'inicio'|is_active:request.resolver_match.url_name }}">
+                    <a href="{% url 'inicio' %}">{% trans "Inicio" %}</a>
+                </li>
+                <li class="{{ 'articulos:lista_articulos'|is_active:request.resolver_match.url_name }}">
+                    <a href="{% url 'articulos:lista_articulos' %}">{% trans "Artículos" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'articulos:preguntas_frecuentes' %}">{% trans "Preguntas Frecuentes" %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'articulos:contactanos' %}">{% trans "Contáctanos" %}</a>
+                </li>
+                {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'articulos:logout' %}">{% trans "Cerrar Sesión" %}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{% url 'articulos:login' %}">{% trans "Iniciar Sesión" %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'articulos:registro' %}">{% trans "Registrarse" %}</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+    <!-- ✅ Mensajes de Django -->
+    {% if messages %}
+    <div class="django-messages">
+        {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- ✅ Contenido Principal -->
+    <main class="site-main" role="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ✅ Pie de Página -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>{% trans "Desarrollo" %}</h3>
+                <ul>
+                    <li><a href="{% url 'inicio' %}">{% trans "Inicio" %}</a></li>
+                    <li><a href="{% url 'articulos:lista_articulos' %}">{% trans "Artículos" %}</a></li>
+                    <li><a href="{% url 'articulos:registro' %}">{% trans "Registrarse" %}</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>{% trans "Soporte" %}</h3>
+                <ul>
+                    <li><a href="{% url 'articulos:preguntas_frecuentes' %}">{% trans "Preguntas Frecuentes" %}</a></li>
+                    <li><a href="{% url 'articulos:contactanos' %}">{% trans "Contáctanos" %}</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>{% trans "Síguenos" %}</h3>
+                <a href="#" aria-label="Twitter">
+                    <img src="{% static 'icons/twitter-icon.png' %}" alt="{% trans 'Twitter' %}">
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                    <img src="{% static 'icons/linkedin-icon.png' %}" alt="{% trans 'LinkedIn' %}">
+                </a>
+            </div>
+        </div>
+        <p class="footer-credits">{% trans "© 2025 KAFE KEAN. Todos los derechos reservados." %}</p>
+    </footer>
+
+    <!-- ✅ Botón Regreso Arriba -->
+    <button id="btn-arriba" class="btn-arriba" aria-label="{% trans 'Regresar arriba' %}" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });">
+        ⬆️
+    </button>
+
+    <!-- ✅ Scripts -->
+    {% block extra_scripts %}
+    <script src="{% static 'js/main.js' %}" defer></script>
+    {% endblock %}
+</body>
+</html>

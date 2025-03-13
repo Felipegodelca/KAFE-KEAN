@@ -1,0 +1,85 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Contáctanos - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<section class="contact-container">
+    <!-- ✅ Encabezado -->
+    <header class="section-header text-center py-4">
+        <h1 class="display-4">{% trans "¡Ponte en Contacto con Nosotros!" %}</h1>
+        <p class="lead">{% trans "¿Tienes alguna duda o sugerencia? Completa el formulario y nos pondremos en contacto contigo lo antes posible." %}</p>
+    </header>
+
+    <!-- ✅ Formulario de Contacto -->
+    <div class="contact-form bg-light p-4 rounded shadow-sm">
+        <form method="POST" action="{% url 'articulos:contactanos' %}" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="nombre" class="form-label">{% trans "Nombre Completo:" %}</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="{% trans 'Tu nombre completo' %}" required>
+                <div class="invalid-feedback">{% trans "Por favor, introduce tu nombre completo." %}</div>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">{% trans "Correo Electrónico:" %}</label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="{% trans 'Tu correo electrónico' %}" required>
+                <div class="invalid-feedback">{% trans "Por favor, introduce un correo válido." %}</div>
+            </div>
+            <div class="mb-3">
+                <label for="asunto" class="form-label">{% trans "Asunto:" %}</label>
+                <input type="text" id="asunto" name="asunto" class="form-control" placeholder="{% trans 'Asunto del mensaje' %}" required>
+                <div class="invalid-feedback">{% trans "Por favor, introduce un asunto." %}</div>
+            </div>
+            <div class="mb-3">
+                <label for="mensaje" class="form-label">{% trans "Mensaje:" %}</label>
+                <textarea id="mensaje" name="mensaje" class="form-control" rows="5" placeholder="{% trans 'Escribe tu mensaje aquí...' %}" required></textarea>
+                <div class="invalid-feedback">{% trans "Por favor, escribe un mensaje." %}</div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-lg">{% trans "Enviar Mensaje" %}</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ✅ Información de Contacto Adicional -->
+    <div class="contact-info text-center mt-4">
+        <h2 class="h4">{% trans "También puedes encontrarnos en:" %}</h2>
+        <p><strong>{% trans "Correo:" %}</strong> <a href="mailto:contacto@kafekean.com">contacto@kafekean.com</a></p>
+        <p><strong>{% trans "Teléfono:" %}</strong> +52 55 1234 5678</p>
+    </div>
+
+    <!-- ✅ Redes Sociales -->
+    <div class="contact-social text-center mt-4">
+        <h2 class="h4">{% trans "Síguenos en Redes Sociales" %}</h2>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://twitter.com/kafekean" target="_blank" aria-label="{% trans 'Visitar Twitter de KAFE KEAN' %}">
+                <img src="{% static 'icons/twitter-icon.svg' %}" alt="Twitter" class="social-icon">
+            </a>
+            <a href="https://linkedin.com/company/kafekean" target="_blank" aria-label="{% trans 'Visitar LinkedIn de KAFE KEAN' %}">
+                <img src="{% static 'icons/linkedin-icon.svg' %}" alt="LinkedIn" class="social-icon">
+            </a>
+            <a href="https://instagram.com/kafekean" target="_blank" aria-label="{% trans 'Visitar Instagram de KAFE KEAN' %}">
+                <img src="{% static 'icons/instagram-icon.svg' %}" alt="Instagram" class="social-icon">
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    (function () {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
+        forms.forEach(function (form) {
+            form.addEventListener('submit', function (event) {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
+</script>
+{% endblock %}

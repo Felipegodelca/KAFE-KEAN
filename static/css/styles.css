@@ -1,0 +1,350 @@
+/* ==========================
+🌟 Variables Globales
+========================== */
+:root {
+    --primary-color: #2C3E50; /* Azul profundo */
+    --secondary-color: #FF8C00; /* Naranja (actualizado) */
+    --accent-color: #FFA500; /* Complementario más claro (actualizado) */
+    --background-color: #F4F4F9; /* Fondo claro */
+    --table-bg-color: #EFEFF5; /* Fondo para tablas */
+    --text-color: #333; /* Texto oscuro */
+    --light-text: #777; /* Texto claro */
+    --error-color: #E74C3C; /* Rojo */
+    --success-color: #2ECC71; /* Verde Éxito */
+    --font-family: 'Roboto', sans-serif;
+}
+
+
+/* ==========================
+🌟 Reset y Estilos Generales
+========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body { 
+    font-family: var(--font-family);
+    background: linear-gradient(180deg, var(--background-color), #ffffff); /* Fondo con degradado */
+    color: var(--text-color);
+    color: #ffffff;
+    color: var(--text-color);
+    font-size: 1rem; /* 🔥 Tamaño base (16px por defecto) */
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh; /* Garantiza que cubra toda la pantalla */
+    padding: 0 1rem; /* ✅ Agrega margen en móviles */
+}
+
+/* 🔹 Mejor ajuste en pantallas grandes */
+@media (min-width: 768px) { 
+    body {
+        font-size: 1.1rem; /* 🔥 Escala la fuente para mejor legibilidad */
+        line-height: 1.8;
+    }
+}
+
+/* 🔹 Ajuste especial para pantallas grandes */
+@media (min-width: 1200px) { 
+    body {
+        font-size: 1.2rem; /* 🔥 Aumenta el tamaño en desktop */
+        max-width: 1200px; /* ✅ Evita que el texto se extienda demasiado */
+        margin: 0 auto;
+    }
+}
+
+/* ==========================
+🌟 Contenedores Responsivos
+========================== */
+.container {
+    max-width: 1200px;  /* 📌 Tamaño máximo para pantallas grandes */
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* 📌 Asegura una estructura vertical limpia */
+    gap: 20px; /* 📌 Espaciado entre elementos */
+}
+
+/* ✅ Para secciones dentro de .container */
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center; /* 📌 Asegura alineación vertical */
+    gap: 20px; /* 📌 Espacio entre elementos */
+}
+
+/* ✅ Ajuste en dispositivos móviles */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px; /* 📌 Reduce padding en móviles */
+    }
+
+    .section {
+        flex-direction: column; /* 📌 Asegura que los elementos no se desordenen */
+        align-items: center;
+    }
+}
+
+/* ==========================
+🌟 Diseño de Grids
+========================== */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* 📌 Diseño adaptable */
+    gap: 20px;
+    align-items: start;
+}
+
+/* ✅ Asegurar que los grids se adapten bien */
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr; /* 📌 En móvil, una sola columna */
+    }
+}
+
+/* ==========================
+🌟 Botones Accesibles y Uniformes
+========================== */
+.btn {
+    display: inline-block;
+    background: var(--secondary-color); /* Ahora naranja */
+    color: #fff;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px; /* 🔥 Bordes más elegantes y uniformes */
+    text-decoration: none;
+    text-align: center;
+    min-width: 140px;
+    min-height: 48px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px auto;
+}
+
+/* 🔥 Efecto Hover */
+.btn:hover {
+    background: var(--accent-color); /* Ahora el tono complementario naranja */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ✅ Botones Grandes */
+.btn-lg {
+    font-size: 1.1rem;
+    padding: 16px 36px;
+    min-width: 160px;
+    min-height: 56px;
+}
+
+/* ✅ Botones Pequeños */
+.btn-sm {
+    font-size: 0.9rem;
+    padding: 8px 20px;
+    min-width: 120px;
+    min-height: 40px;
+}
+
+/* 📌 Adaptación para móviles */
+@media (max-width: 768px) {
+    .btn {
+        width: 100%; /* 📌 Que ocupen el ancho en pantallas pequeñas */
+        max-width: 320px;
+        font-size: 1rem;
+    }
+}
+
+/* ==========================
+🌟 Imagen Inspiradora
+========================== */
+.inspirational-image img {
+    display: block;
+    margin: 20px auto;
+    max-width: 70%; /* Tamaño máximo */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease; /* Animación al pasar el ratón */
+}
+.inspirational-image img:hover {
+    transform: scale(1.05); /* Efecto de aumento */
+}
+
+/* ==========================
+🌟 Footer
+========================== */
+.site-footer {
+    background: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.site-footer ul {
+    list-style: none; /* Eliminar puntos */
+    padding: 0;
+}
+
+.footer-credits {
+    font-size: 0.9rem;
+}
+
+/* ==========================
+🌟 Sección de Enlaces Adicionales
+========================== */
+.section-links a {
+    display: inline-block;
+    width: auto; /* Ajuste dinámico */
+    margin-bottom: 10px; /* Espaciado uniforme */
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 25px;
+    text-align: center;
+    background-color: var(--secondary-color);
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.section-links a:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+/* ==========================
+🌟 Responsividad
+========================== */
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .exchange-table td,
+    .exchange-table th {
+        font-size: 0.9rem;
+    }
+}
+
+/* ==========================
+🌟 Formularios Responsivos
+========================== */
+form {
+    max-width: 600px; /* 📌 Limita el ancho para que no sea demasiado grande */
+    width: 100%; /* 📌 Ocupa todo el ancho disponible */
+    margin: 0 auto; /* 📌 Centra el formulario */
+    padding: 20px;
+    background: #fff; /* 📌 Fondo claro */
+    border-radius: 10px; /* 📌 Bordes suaves */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ✅ Ajuste de Campos */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%; /* 📌 Ocupa todo el ancho disponible */
+    max-width: 100%; /* 📌 Evita que se desborde */
+    padding: 12px; /* 📌 Espaciado cómodo para escribir */
+    margin-bottom: 15px; /* 📌 Espaciado entre campos */
+    font-size: 1rem; /* 📌 Texto legible */
+    border: 1px solid #ccc; /* 📌 Borde sutil */
+    border-radius: 8px; /* 📌 Bordes suaves */
+    background: #f9f9f9; /* 📌 Fondo claro */
+    transition: border 0.3s ease-in-out;
+}
+
+/* ✅ Mejor interacción en dispositivos móviles */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(24, 188, 156, 0.5);
+}
+
+/* ✅ Botón de Enviar */
+button[type="submit"],
+.btn-submit {
+    width: 100%; /* 📌 Ocupa todo el ancho en móviles */
+    max-width: 320px;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background: var(--secondary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+    margin: 10px auto;
+}
+
+button[type="submit"]:hover,
+.btn-submit:hover {
+    background: var(--accent-color);
+    transform: scale(1.05);
+}
+
+/* ✅ Ajuste especial para móviles */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+    
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    button[type="submit"] {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    /* ✅ Estilo de Menú Vertical en móviles */
+    .vertical-menu {
+        gap: 10px; /* Reduce el espacio entre elementos */
+    }
+
+    .vertical-menu a {
+        font-size: 0.9rem; /* Reduce el tamaño del texto */
+        padding: 8px 12px; /* Ajusta el espaciado interno */
+    }
+}
+
+/* ==========================
+🌟 Estilo de Menú Vertical
+========================== */
+.vertical-menu {
+    display: flex;
+    flex-direction: column; /* Apila los elementos en columna */
+    gap: 15px; /* Espaciado entre los elementos */
+    align-items: flex-start; /* Alinea los elementos al inicio */
+}
+
+.vertical-menu a {
+    text-decoration: none; /* Elimina subrayados */
+    font-size: 1rem; /* Ajusta el tamaño */
+    color: var(--primary-color); /* Color de texto principal */
+    padding: 10px 15px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background 0.3s, color 0.3s; /* Suaviza el cambio de colores */
+}
+
+.vertical-menu a:hover {
+    background: var(--secondary-color); /* Fondo naranja en hover */
+    color: #fff; /* Texto blanco en hover */
+}

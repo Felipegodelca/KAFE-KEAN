@@ -1,0 +1,95 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static custom_filters %}
+
+{% block title %}{% trans "Iniciar Sesión - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+
+<div class="container container-login py-5">
+    <!-- ✅ Encabezado de la página -->
+    <header class="section-header text-center mb-4">
+        <h1 class="login-title fw-bold text-primary">{% trans "Iniciar Sesión" %}</h1>
+        <p class="text-muted">{% trans "Accede a tu cuenta para disfrutar de todo el contenido de KAFE KEAN." %}</p>
+    </header>
+
+    <!-- ✅ Mostrar errores de validación -->
+    {% if form.errors %}
+    <div class="alert alert-danger p-3 rounded shadow-sm fade-in" role="alert" aria-live="assertive">
+        <h2 class="h5">{% trans "Corrige los siguientes errores:" %}</h2>
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>⚠️ {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- ✅ Formulario de inicio de sesión -->
+    <section class="section-form">
+        <form method="post" class="form-login p-4 rounded shadow-sm bg-light" aria-labelledby="form-login">
+            {% csrf_token %}
+
+            <!-- ✅ Campo de Usuario o Email -->
+            <div class="form-group mb-4">
+                <label for="{{ form.username.id_for_label }}" class="form-label fw-bold">
+                    {% trans "Usuario o Email" %}
+                </label>
+                {{ form.username|add_class:"form-control" }}
+            </div>
+
+            <!-- ✅ Campo de Contraseña -->
+            <div class="form-group mb-4">
+                <label for="{{ form.password.id_for_label }}" class="form-label fw-bold">
+                    {% trans "Contraseña" %}
+                </label>
+                {{ form.password|add_class:"form-control" }}
+            </div>
+
+            <!-- ✅ Campo de Recordar Sesión -->
+            <div class="form-check mb-4">
+                {{ form.remember }}
+                <label class="form-check-label" for="{{ form.remember.id_for_label }}">
+                    {% trans "Recuérdame" %}
+                </label>
+            </div>
+
+            <!-- ✅ Botón de Iniciar Sesión -->
+            <div class="form-actions text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg px-4">
+                    {% trans "Iniciar Sesión" %}
+                </button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ✅ Enlaces adicionales -->
+    <section class="section-links text-center mt-4">
+        <p class="mb-4">
+            <a href="{% url 'articulos:password_reset' %}" class="btn btn-outline-secondary d-block mb-3">
+                {% trans "¿Olvidaste tu contraseña?" %}
+            </a>
+        </p>
+        <p>
+            <a href="{% url 'articulos:registro' %}" class="btn btn-outline-secondary d-block">
+                {% trans "Regístrate aquí" %}
+            </a>
+        </p>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const usernameField = document.querySelector('#id_username');
+        const passwordField = document.querySelector('#id_password');
+
+        // ✅ Autofocus en el campo de usuario
+        if (usernameField) {
+            usernameField.focus();
+        }
+    });
+</script>
+{% endblock %}

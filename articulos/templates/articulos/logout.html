@@ -1,0 +1,54 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Cierre de Sesión - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container container-logout py-5">
+    <!-- ✅ Encabezado -->
+    <header class="section-header text-center mb-4">
+        <h1 class="display-5 text-primary">{% trans "Has cerrado sesión" %}</h1>
+        <p class="lead text-muted">
+            {% trans "Gracias por visitarnos. Te esperamos pronto para seguir explorando y aprendiendo juntos." %}
+        </p>
+    </header>
+
+    <!-- ✅ Ilustración de Cierre de Sesión -->
+    <section class="logout-illustration text-center mb-5">
+        <img src="{% static 'img/logout_success.svg' %}" 
+             alt="{% trans 'Ilustración de cierre de sesión exitoso' %}" 
+             class="img-fluid" 
+             style="max-width: 300px;">
+    </section>
+
+    <!-- ✅ Enlaces de Acción -->
+    <section class="section-actions text-center">
+        <a href="{% url 'articulos:login' %}" 
+           class="btn btn-primary btn-lg me-3" 
+           aria-label="{% trans 'Iniciar sesión nuevamente en KAFE KEAN' %}">
+            {% trans "Iniciar Sesión" %}
+        </a>
+        <a href="{% url 'inicio' %}" 
+           class="btn btn-secondary btn-lg" 
+           aria-label="{% trans 'Regresar a la página de inicio' %}">
+            {% trans "Volver al Inicio" %}
+        </a>
+    </section>
+
+    <!-- ✅ Información adicional -->
+    <section class="section-info text-center mt-4">
+        <p class="text-muted">
+            {% trans "¿Necesitas ayuda? Contáctanos en" %} 
+            <a href="mailto:soporte@kafekean.com" class="text-primary">{% trans "soporte@kafekean.com" %}</a>.
+        </p>
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.info('{% trans "Has cerrado sesión exitosamente." %}');
+    });
+</script>
+{% endblock %}

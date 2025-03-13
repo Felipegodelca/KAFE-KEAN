@@ -1,0 +1,145 @@
+/* ==========================
+🌟 Variables Globales
+========================== */
+:root {
+    --primary-color: #2C3E50; /* Azul profundo */
+    --secondary-color: #18BC9C; /* Verde */
+    --accent-color: #F39C12; /* Naranja */
+    --background-color: #F4F4F9; /* Fondo claro */
+    --table-bg-color: #EFEFF5; /* Fondo para tablas */
+    --text-color: #333; /* Texto oscuro */
+    --light-text: #777; /* Texto claro */
+    --error-color: #E74C3C; /* Rojo */
+    --success-color: #2ECC71; /* Verde Éxito */
+    --font-family: 'Roboto', sans-serif;
+}
+
+/* ==========================
+🌟 Reset y Estilos Generales
+========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(180deg, var(--background-color), #ffffff); /* Fondo con degradado */
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh; /* Garantiza que cubra toda la pantalla */
+}
+
+/* ==========================
+🌟 Contenedores
+========================== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* ==========================
+🌟 Botones
+========================== */
+.btn {
+    display: inline-block;
+    background: var(--secondary-color);
+    color: #fff;
+    padding: 10px 20px; /* Tamaño ajustado */
+    font-size: 0.9rem;
+    border-radius: 30px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: auto; /* Evita que se alarguen */
+    margin-bottom: 15px; /* Espaciado entre botones */
+}
+.btn:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+.btn-lg {
+    font-size: 1rem;
+    padding: 12px 30px;
+}
+
+/* ==========================
+🌟 Imagen Inspiradora
+========================== */
+.inspirational-image img {
+    display: block;
+    margin: 20px auto;
+    max-width: 70%; /* Tamaño máximo */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease; /* Animación al pasar el ratón */
+}
+.inspirational-image img:hover {
+    transform: scale(1.05); /* Efecto de aumento */
+}
+
+/* ==========================
+🌟 Footer
+========================== */
+.site-footer {
+    background: var(--primary-color);
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.site-footer ul {
+    list-style: none; /* Eliminar puntos */
+    padding: 0;
+}
+
+.footer-credits {
+    font-size: 0.9rem;
+}
+
+/* ==========================
+🌟 Sección de Enlaces Adicionales
+========================== */
+.section-links a {
+    display: inline-block;
+    width: auto; /* Ajuste dinámico */
+    margin-bottom: 10px; /* Espaciado uniforme */
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border-radius: 25px;
+    text-align: center;
+    background-color: var(--secondary-color);
+    color: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+.section-links a:hover {
+    background-color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+/* ==========================
+🌟 Responsividad
+========================== */
+@media (max-width: 768px) {
+    .site-header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .exchange-table td,
+    .exchange-table th {
+        font-size: 0.9rem;
+    }
+}

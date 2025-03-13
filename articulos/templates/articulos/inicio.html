@@ -1,0 +1,110 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static custom_filters %}
+
+{% block title %}{% trans "Inicio - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- ✅ Encabezado Principal -->
+    <header class="section-header text-center mb-5">
+        <h1 class="display-4 text-primary fw-bold">{% trans "Bienvenido a KAFE KEAN" %}</h1>
+        <p class="subtitle lead text-secondary">
+            {% trans "Explora, Aprende y Crece con nosotros." %}
+        </p>
+    </header>
+
+    <!-- 🚀 Integración del Algoritmo de KAFE KEAN -->
+    <section class="section-algorithm mb-5 text-center">
+        <h2 class="h3 text-primary fw-bold">{% trans "Análisis Inteligente de KAFE KEAN" %}</h2>
+        <p class="text-muted">
+            {% trans "Descubre estrategias personalizadas para alcanzar tu máximo potencial." %}
+        </p>
+        
+        <button id="run-algorithm" class="btn btn-lg btn-success shadow-lg">
+            {% trans "Ejecutar Algoritmo" %}
+        </button>
+        
+        <div id="algorithm-result" class="mt-4 p-3 rounded bg-light shadow-sm text-center"></div>
+    </section>
+
+    <!-- ✅ Últimos Artículos -->
+    <section class="section-articles mb-5">
+        <h2 class="h3 text-center text-primary fw-bold">{% trans "Últimos Artículos" %}</h2>
+        <ul class="list-unstyled mt-4">
+            {% if articulos %}
+                {% for articulo in articulos %}
+                <li class="article-card p-3 mb-4 bg-light rounded shadow-sm">
+                    <h3 class="h5">
+                        <a href="{% url 'articulos:detalle_articulo' articulo.pk %}" class="text-decoration-none text-primary">
+                            {{ articulo.titulo }}
+                        </a>
+                    </h3>
+                    <p class="text-muted small">{{ articulo.descripcion|truncatewords:20 }}</p>
+                    <a href="{% url 'articulos:detalle_articulo' articulo.pk %}" class="btn btn-outline-primary btn-sm">
+                        {% trans "Leer Más" %}
+                    </a>
+                </li>
+                {% endfor %}
+            {% else %}
+                <li>
+                    <p class="text-muted text-center">{% trans "No hay artículos disponibles actualmente." %}</p>
+                </li>
+            {% endif %}
+        </ul>
+    </section>
+
+    <!-- ✅ Autenticación -->
+    <section class="section-auth text-center mb-5">
+        {% if user.is_authenticated %}
+            <p class="lead text-success">{% trans "¡Bienvenido de nuevo, " %}{{ user.username }}!</p>
+            <a href="{% url 'articulos:logout' %}" class="btn btn-danger btn-lg shadow-lg">{% trans "Cerrar Sesión" %}</a>
+        {% else %}
+            <p class="lead text-primary">{% trans "¿Nuevo aquí?" %}</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'articulos:registro' %}" class="btn btn-success btn-lg shadow-lg">{% trans "Crear Cuenta" %}</a>
+                <a href="{% url 'articulos:login' %}" class="btn btn-primary btn-lg shadow-lg">{% trans "Iniciar Sesión" %}</a>
+            </div>
+        {% endif %}
+    </section>
+
+    <!-- ✅ Imagen Inspiradora -->
+    {% if imagen_inspiradora %}
+    <section class="section-inspiration text-center mt-5">
+        <h2 class="h3 text-primary fw-bold">{% trans "Inspiración del Día" %}</h2>
+        <img src="{{ imagen_inspiradora }}" alt="{% trans 'Imagen inspiradora del día' %}" class="img-fluid rounded shadow-lg mt-3">
+    </section>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.info('{% trans "Página de inicio cargada correctamente." %}');
+    });
+
+    // 🚀 Llamada AJAX para ejecutar el algoritmo
+    document.getElementById('run-algorithm').addEventListener('click', function() {
+        let resultDiv = document.getElementById('algorithm-result');
+        resultDiv.innerHTML = "<p class='text-info'>{% trans 'Ejecutando algoritmo...' %}</p>";
+
+        fetch("{% url 'articulos:ejecutar_algoritmo' %}")
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                resultDiv.innerHTML = `<p class='text-danger fw-bold'>{% trans 'Error al ejecutar el algoritmo.' %}</p>`;
+            } else {
+                resultDiv.innerHTML = `
+                    <p class="text-success fw-bold">{% trans 'Mejor acción recomendada:' %} ${data.mejor_accion}</p>
+                    <p class="text-primary">{% trans 'Resultado Final:' %} ${data.resultado_final}</p>
+                    <p class="text-info fw-bold">{% trans 'Consejo Personalizado:' %} ${data.consejo_practico}</p>
+                `;
+            }
+        })
+        .catch(error => {
+            resultDiv.innerHTML = `<p class='text-danger'>{% trans 'Error de conexión.' %}</p>`;
+            console.error('Error:', error);
+        });
+    });
+</script>
+{% endblock %}

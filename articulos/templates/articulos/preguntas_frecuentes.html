@@ -1,0 +1,171 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Preguntas Frecuentes" %}{% endblock %}
+
+{% block content %}
+<section class="faq-container">
+    <!-- ✅ Encabezado de la sección -->
+    <header class="section-header text-center">
+        <h1 class="faq-title">{% trans "Preguntas Frecuentes" %}</h1>
+        <p class="faq-description">
+            {% trans "Encuentra respuestas a las dudas más comunes. Actualizadas dinámicamente gracias a nuestra integración con IA." %}
+        </p>
+    </header>
+    
+    <!-- ✅ Buscador de Preguntas -->
+    <div class="faq-search mb-4">
+        <input type="text" id="faq-search-input" placeholder="{% trans 'Buscar en preguntas frecuentes...' %}" aria-label="{% trans 'Buscar en preguntas frecuentes' %}">
+        <button onclick="searchFAQ()">{% trans "Buscar" %}</button>
+    </div>
+
+    <!-- ✅ Listado de Preguntas Frecuentes -->
+    <div class="faq-list">
+        {% if preguntas_frecuentes %}
+            {% for categoria, preguntas in preguntas_frecuentes.items %}
+            <div class="faq-category mb-4">
+                <h2>{{ categoria }}</h2>
+                <ul>
+                    {% for pregunta, respuesta in preguntas %}
+                    <li class="faq-item">
+                        <button class="faq-question" onclick="toggleAnswer(this)" aria-expanded="false">
+                            {{ pregunta }}
+                        </button>
+                        <div class="faq-answer" aria-hidden="true">
+                            {{ respuesta }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endfor %}
+        {% else %}
+        <p class="text-center">{% trans "No hay preguntas frecuentes disponibles en este momento." %}</p>
+        {% endif %}
+    </div>
+
+    <!-- ✅ Actualización con IA -->
+    <div class="faq-update text-center mt-5">
+        <p>
+            {% trans "¿No encuentras lo que buscas? ¡Nuestra IA está siempre actualizando las respuestas!" %}
+        </p>
+        <button onclick="updateFAQs()">{% trans "Actualizar Preguntas con IA" %}</button>
+    </div>
+</section>
+
+<!-- ✅ JavaScript para Interactividad -->
+{% block extra_scripts %}
+<script>
+    // ✅ Mostrar/Ocultar respuestas
+    function toggleAnswer(button) {
+        const answer = button.nextElementSibling;
+        const isExpanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !isExpanded);
+        answer.setAttribute('aria-hidden', isExpanded);
+        answer.classList.toggle('visible');
+    }
+
+    // ✅ Buscar en Preguntas Frecuentes
+    function searchFAQ() {
+        const searchInput = document.getElementById('faq-search-input').value.toLowerCase();
+        const questions = document.querySelectorAll('.faq-question');
+
+        questions.forEach(question => {
+            const text = question.textContent.toLowerCase();
+            const parent = question.parentElement;
+            parent.style.display = text.includes(searchInput) ? 'block' : 'none';
+        });
+    }
+
+    // ✅ Simulación de Actualización con IA
+    function updateFAQs() {
+        const button = document.querySelector('.faq-update button');
+        button.textContent = '{% trans "Actualizando..." %}';
+        button.disabled = true;
+
+        setTimeout(() => {
+            alert('{% trans "¡Las preguntas frecuentes se han actualizado con la última información!" %}');
+            button.textContent = '{% trans "Actualizar Preguntas con IA" %}';
+            button.disabled = false;
+        }, 2000);
+    }
+</script>
+{% endblock %}
+
+<!-- ✅ Estilos CSS Mejorados -->
+<style>
+    .faq-container {
+        padding: 2rem;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .faq-title {
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    .faq-description {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .faq-search {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+
+    .faq-search input {
+        width: 70%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .faq-search button {
+        margin-left: 0.5rem;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        background-color: #0078D7;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .faq-search button:hover {
+        background-color: #005fb8;
+    }
+
+    .faq-category h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid #ddd;
+    }
+
+    .faq-item {
+        margin-bottom: 1rem;
+    }
+
+    .faq-question {
+        background: none;
+        border: none;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #0078D7;
+        cursor: pointer;
+    }
+
+    .faq-answer {
+        display: none;
+    }
+
+    .faq-answer.visible {
+        display: block;
+    }
+</style>
+{% endblock %}

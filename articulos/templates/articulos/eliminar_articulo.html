@@ -1,0 +1,107 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Eliminar Artículo - KAFE KEAN" %}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <!-- ✅ Encabezado Principal -->
+    <header class="text-center mb-4">
+        <h1 class="display-5 text-danger">{% trans "Eliminar Artículo" %}</h1>
+        <p class="lead text-muted">
+            {% trans "¿Estás seguro de que deseas eliminar este artículo? Esta acción no se puede deshacer." %}
+        </p>
+    </header>
+
+    <!-- ✅ Detalles del Artículo -->
+    <section class="text-center mb-4">
+        <h2 class="h4 text-primary">{{ articulo.titulo }}</h2>
+        <ul class="list-inline text-muted">
+            <li class="list-inline-item">
+                <strong>{% trans "Tema:" %}</strong> {{ articulo.get_tema_display|default:_("No especificado") }}
+            </li>
+            <li class="list-inline-item">
+                <strong>{% trans "Publicado el:" %}</strong> {{ articulo.fecha_publicacion|date:"d M Y H:i" }}
+            </li>
+        </ul>
+        <p class="text-muted">
+            {{ articulo.contenido|truncatewords:30|default:_("Contenido no disponible.") }}
+        </p>
+
+        {% if articulo.imagen %}
+        <div class="mb-3">
+            <img src="{{ articulo.imagen.url }}" 
+                 alt="{% trans 'Imagen del artículo' %}" 
+                 class="img-fluid rounded shadow-lg"
+                 style="max-width: 400px; object-fit: cover;" 
+                 loading="lazy">
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- ✅ Advertencia de Eliminación -->
+    <section class="text-center mb-4">
+        <p class="alert alert-warning p-3 rounded" aria-live="assertive">
+            ⚠️ <strong>{% trans "¡Advertencia!" %}</strong><br>
+            {% trans "Esta acción es permanente y no se puede deshacer." %}
+        </p>
+    </section>
+
+    <!-- ✅ Confirmación de Eliminación con Modal -->
+    <section class="text-center mb-4">
+        <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">
+            🗑️ {% trans "Eliminar Artículo" %}
+        </button>
+        <a href="{% url 'articulos:detalle_articulo' articulo.id %}" class="btn btn-secondary btn-lg">
+            ↩️ {% trans "Cancelar" %}
+        </a>
+    </section>
+
+    <!-- ✅ Modal de Confirmación -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">{% trans "Confirmar Eliminación" %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="{% trans 'Cerrar' %}"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">
+                        {% trans "¿Estás seguro de que deseas eliminar este artículo? Esta acción no se puede deshacer." %}
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        {% trans "No, Conservar" %}
+                    </button>
+                    <form method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">
+                            {% trans "Sí, Eliminar" %}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ✅ Navegación Adicional -->
+    <div class="text-center mt-4">
+        <a href="{% url 'articulos:lista_articulos' %}" class="btn btn-outline-secondary btn-lg me-3">
+            ↩️ {% trans "Volver a la Lista de Artículos" %}
+        </a>
+        <a href="{% url 'inicio' %}" class="btn btn-outline-secondary btn-lg">
+            🏠 {% trans "Volver al Inicio" %}
+        </a>
+    </div>
+</div>
+
+<!-- ✅ Script Adicional -->
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.warn('{% trans "Estás en la página de eliminación de un artículo. ¡Procede con precaución!" %}');
+    });
+</script>
+{% endblock %}
+{% endblock %}

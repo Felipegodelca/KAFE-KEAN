@@ -1,0 +1,1441 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-01-24 10:40-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\articulos\admin.py:23
+msgid "Información del Artículo"
+msgstr ""
+
+#: .\articulos\admin.py:26
+msgid "Fechas"
+msgstr ""
+
+#: .\articulos\admin.py:43
+#, python-format
+msgid "%d artículo(s) marcado(s) como Filosofía."
+msgstr ""
+
+#: .\articulos\admin.py:44
+msgid "Marcar como Filosofía"
+msgstr ""
+
+#: .\articulos\admin.py:51
+#, python-format
+msgid "%d artículo(s) marcado(s) como Psicología."
+msgstr ""
+
+#: .\articulos\admin.py:52
+msgid "Marcar como Psicología"
+msgstr ""
+
+#: .\articulos\admin.py:59
+#, python-format
+msgid "%d artículo(s) marcado(s) como Negocios."
+msgstr ""
+
+#: .\articulos\admin.py:60
+msgid "Marcar como Negocios"
+msgstr ""
+
+#: .\articulos\forms.py:12
+msgid "Introduce un título descriptivo (mínimo 5 caracteres)."
+msgstr ""
+
+#: .\articulos\forms.py:17
+msgid "Escribe el contenido aquí..."
+msgstr ""
+
+#: .\articulos\forms.py:24
+msgid "Etiquetas separadas por comas, ej: filosofía, psicología."
+msgstr ""
+
+#: .\articulos\forms.py:33 .\articulos\models.py:20
+msgid "Título"
+msgstr ""
+
+#: .\articulos\forms.py:34 .\articulos\models.py:31
+msgid "Contenido"
+msgstr ""
+
+#: .\articulos\forms.py:35 .\articulos\models.py:42
+msgid "Tema"
+msgstr ""
+
+#: .\articulos\forms.py:36 .\articulos\models.py:49
+msgid "Etiquetas"
+msgstr ""
+
+#: .\articulos\forms.py:37 .\articulos\models.py:55
+msgid "Imagen"
+msgstr ""
+
+#: .\articulos\forms.py:41
+msgid ""
+"Usa comas para separar las etiquetas. Ejemplo: filosofía, psicología, "
+"negocios."
+msgstr ""
+
+#: .\articulos\forms.py:47 .\articulos\models.py:65
+msgid "El título debe tener al menos 5 caracteres."
+msgstr ""
+
+#: .\articulos\forms.py:53
+msgid "El contenido debe tener al menos 20 caracteres."
+msgstr ""
+
+#: .\articulos\forms.py:61
+msgid "Solo se permiten archivos JPG, JPEG o PNG."
+msgstr ""
+
+#: .\articulos\forms.py:63
+msgid "La imagen no debe exceder 5MB."
+msgstr ""
+
+#: .\articulos\models.py:12
+msgid "Filosofía"
+msgstr ""
+
+#: .\articulos\models.py:13
+msgid "Psicología"
+msgstr ""
+
+#: .\articulos\models.py:14
+msgid "Negocios"
+msgstr ""
+
+#: .\articulos\models.py:21
+msgid ""
+"Introduce un título descriptivo para el artículo (máximo 200 caracteres)."
+msgstr ""
+
+#: .\articulos\models.py:27
+msgid "Slug"
+msgstr ""
+
+#: .\articulos\models.py:28
+msgid "URL amigable para este artículo."
+msgstr ""
+
+#: .\articulos\models.py:32
+msgid "Escribe el contenido completo del artículo aquí."
+msgstr ""
+
+#: .\articulos\models.py:36
+msgid "Fecha de publicación"
+msgstr ""
+
+#: .\articulos\models.py:46
+msgid "Etiquetas separadas por comas, ej: reflexión, conciencia."
+msgstr ""
+
+#: .\articulos\models.py:67
+msgid "No puedes agregar más de 10 etiquetas."
+msgstr ""
+
+#: .\articulos\models.py:73
+msgid "Solo se permiten imágenes JPEG o PNG."
+msgstr ""
+
+#: .\articulos\models.py:75
+msgid "El tamaño de la imagen no puede exceder los 5MB."
+msgstr ""
+
+#: .\articulos\models.py:77
+msgid "La imagen proporcionada no es válida."
+msgstr ""
+
+#: .\articulos\models.py:96
+msgid "Artículo"
+msgstr ""
+
+#: .\articulos\models.py:97 .\articulos\templates\articulos\500.html:67
+#: .\articulos\templates\articulos\base.html:50
+#: .\articulos\templates\articulos\base.html:90
+msgid "Artículos"
+msgstr ""
+
+#: .\articulos\models.py:117
+msgid "Foto de Perfil"
+msgstr ""
+
+#: .\articulos\models.py:119
+msgid "Preferencias"
+msgstr ""
+
+#: .\articulos\models.py:120
+msgid "Biografía"
+msgstr ""
+
+#: .\articulos\models.py:130
+msgid "No puedes agregar más de 20 preferencias."
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:4
+msgid "Error 400 - Solicitud Incorrecta"
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:10
+msgid "400 - Solicitud Incorrecta"
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:12
+msgid ""
+"La solicitud que realizaste no es válida o está mal formada. Por favor, "
+"revisa los datos e inténtalo de nuevo."
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:18
+msgid "Puedes intentar las siguientes opciones:"
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:20
+#: .\articulos\templates\articulos\400.html:21
+#: .\articulos\templates\articulos\404.html:29
+#: .\articulos\templates\articulos\500.html:40
+#: .\articulos\templates\articulos\editar_articulo.html:74
+#: .\articulos\templates\articulos\eliminar_articulo.html:79
+#: .\articulos\templates\articulos\logout.html:34
+#: .\articulos\templates\articulos\password_reset.html:66
+#: .\articulos\templates\articulos\password_reset_complete.html:34
+#: .\articulos\templates\articulos\password_reset_confirm.html:70
+#: .\articulos\templates\articulos\password_reset_done.html:41
+msgid "Volver al Inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:23
+#: .\articulos\templates\articulos\400.html:24
+#: .\articulos\templates\articulos\404.html:32
+msgid "Explorar Artículos"
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:26
+#: .\articulos\templates\articulos\400.html:27
+#: .\articulos\templates\articulos\404.html:34
+#: .\articulos\templates\articulos\404.html:35
+#: .\articulos\templates\articulos\500.html:44
+#: .\articulos\templates\articulos\500.html:45
+msgid "Regresar a la página anterior"
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:35
+msgid "Ilustración de error 400"
+msgstr ""
+
+#: .\articulos\templates\articulos\400.html:45
+msgid "Error 400: Solicitud Incorrecta. Revisa los datos enviados."
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:4
+msgid "Página no encontrada - Error 404"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:10
+msgid "404 - Página no encontrada"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:12
+msgid ""
+"Lo sentimos, la página que buscas no existe o ha sido movida. Verifica la "
+"URL e intenta nuevamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:19
+msgid "Error 404 - Página no encontrada"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:26
+msgid "Intenta las siguientes opciones para encontrar lo que buscas:"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:28
+#: .\articulos\templates\articulos\500.html:39
+msgid "Volver a la página de inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:31
+msgid "Explorar los artículos disponibles"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:42
+msgid ""
+"Si crees que esto es un error, no dudes en ponerte en contacto con nuestro "
+"equipo de soporte:"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:43
+#: .\articulos\templates\articulos\500.html:56
+msgid "Contactar al soporte técnico"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:44
+#: .\articulos\templates\articulos\500.html:57
+#: .\articulos\templates\articulos\password_reset_complete.html:46
+msgid "Contactar Soporte"
+msgstr ""
+
+#: .\articulos\templates\articulos\404.html:53
+msgid "Se ha accedido a una página no encontrada (Error 404)."
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:8
+msgid "Error 500 - Error Interno del Servidor en KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:11
+msgid "Error 500 - Error Interno del Servidor"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:20
+msgid "Ir a la página de inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:22
+msgid "Logo de KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:27
+msgid "500 - Error Interno del Servidor"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:33
+msgid "¡Ups! Algo salió mal."
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:34
+msgid "Parece que ocurrió un error inesperado en nuestro servidor."
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:35
+msgid "Estamos trabajando para solucionarlo lo más rápido posible."
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:53
+msgid ""
+"Si el problema persiste, no dudes en ponerte en contacto con nuestro equipo "
+"de soporte:"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:63
+#: .\articulos\templates\articulos\base.html:111
+msgid "© 2025 KAFE KEAN. Todos los derechos reservados."
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:66
+#: .\articulos\templates\articulos\base.html:47
+#: .\articulos\templates\articulos\base.html:89
+msgid "Inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:68
+msgid "Contacto"
+msgstr ""
+
+#: .\articulos\templates\articulos\500.html:76
+msgid "Se ha producido un error interno del servidor (Error 500)."
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:8
+msgid ""
+"KAFE KEAN - Explora artículos sobre filosofía, psicología y negocios. "
+"Inspira y reflexiona con contenido único."
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:9
+msgid "filosofía, psicología, negocios, reflexión, artículos, KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:12
+msgid ""
+"Explora artículos únicos sobre filosofía, psicología y negocios en KAFE KEAN."
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:16
+#: .\articulos\templates\articulos\base.html:32
+msgid "KAFE KEAN Logo"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:30
+msgid "Ir al inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:44
+msgid "Navegación principal"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:54
+#: .\articulos\templates\articulos\inicio.html:70
+#: .\articulos\templates\articulos\lista_articulos.html:26
+msgid "Cerrar Sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:58
+#: .\articulos\templates\articulos\detalle_articulo.html:61
+#: .\articulos\templates\articulos\inicio.html:78
+#: .\articulos\templates\articulos\lista_articulos.html:34
+#: .\articulos\templates\articulos\login.html:10
+#: .\articulos\templates\articulos\login.html:76
+#: .\articulos\templates\articulos\logout.html:29
+#: .\articulos\templates\articulos\password_reset_complete.html:29
+#: .\articulos\templates\articulos\password_reset_confirm.html:73
+#: .\articulos\templates\articulos\password_reset_done.html:36
+msgid "Iniciar Sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:61
+#: .\articulos\templates\articulos\base.html:91
+#: .\articulos\templates\articulos\detalle_articulo.html:64
+#: .\articulos\templates\articulos\registro.html:55
+msgid "Registrarse"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:87
+msgid "Desarrollo"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:95
+msgid "Soporte"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:97
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:4
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:10
+msgid "Preguntas Frecuentes"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:98
+msgid "Contáctanos"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:102
+msgid "Síguenos"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:104
+msgid "Twitter"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:107
+msgid "LinkedIn"
+msgstr ""
+
+#: .\articulos\templates\articulos\base.html:115
+msgid "Regresar arriba"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:4
+msgid "Contáctanos - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:10
+msgid "¡Ponte en Contacto con Nosotros!"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:11
+msgid ""
+"¿Tienes alguna duda o sugerencia? Completa el formulario y nos pondremos en "
+"contacto contigo lo antes posible."
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:19
+msgid "Nombre Completo:"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:20
+msgid "Tu nombre completo"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:21
+msgid "Por favor, introduce tu nombre completo."
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:24
+msgid "Correo Electrónico:"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:25
+msgid "Tu correo electrónico"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:26
+msgid "Por favor, introduce un correo válido."
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:29
+msgid "Asunto:"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:30
+msgid "Asunto del mensaje"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:31
+msgid "Por favor, introduce un asunto."
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:34
+msgid "Mensaje:"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:35
+msgid "Escribe tu mensaje aquí..."
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:36
+msgid "Por favor, escribe un mensaje."
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:39
+msgid "Enviar Mensaje"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:46
+msgid "También puedes encontrarnos en:"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:47
+msgid "Correo:"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:48
+msgid "Teléfono:"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:53
+msgid "Síguenos en Redes Sociales"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:55
+msgid "Visitar Twitter de KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:58
+msgid "Visitar LinkedIn de KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\contactanos.html:61
+msgid "Visitar Instagram de KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:4
+msgid "Crear Artículo - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:10
+#: .\articulos\templates\articulos\lista_articulos.html:79
+msgid "Crear un Nuevo Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:12
+msgid ""
+"Comparte tus ideas, reflexiones o investigaciones en filosofía, psicología y "
+"negocios."
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:18
+msgid "Publica tu Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:48
+#: .\articulos\templates\articulos\crear_articulo.html:49
+msgid "Publicar Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:58
+msgid ""
+"Antes de publicar, asegúrate de revisar la ortografía y claridad del "
+"contenido."
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:64
+#: .\articulos\templates\articulos\detalle_articulo.html:69
+#: .\articulos\templates\articulos\editar_articulo.html:68
+#: .\articulos\templates\articulos\eliminar_articulo.html:73
+msgid "Regresar a la lista de artículos"
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:65
+#: .\articulos\templates\articulos\detalle_articulo.html:70
+#: .\articulos\templates\articulos\editar_articulo.html:69
+#: .\articulos\templates\articulos\eliminar_articulo.html:74
+msgid "Volver a la Lista de Artículos"
+msgstr ""
+
+#: .\articulos\templates\articulos\crear_articulo.html:74
+msgid "Formulario de creación de artículo cargado correctamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:4
+msgid "Detalles del Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:12
+#: .\articulos\templates\articulos\eliminar_articulo.html:24
+msgid "Publicado el:"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:15
+#: .\articulos\templates\articulos\eliminar_articulo.html:21
+msgid "Tema:"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:15
+msgid "Sin tema"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:23
+#: .\articulos\templates\articulos\eliminar_articulo.html:32
+#: .\articulos\templates\articulos\lista_articulos.html:48
+msgid "Imagen del artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:30
+msgid "No hay imagen disponible para este artículo."
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:36
+msgid "Contenido del Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:38
+msgid "El contenido de este artículo no está disponible."
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:47
+msgid "Editar el artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:48
+#: .\articulos\templates\articulos\editar_articulo.html:10
+msgid "Editar Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:52
+msgid "Eliminar el artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:53
+msgid "¿Estás seguro de que deseas eliminar el artículo \""
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:53
+msgid "\"?"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:54
+#: .\articulos\templates\articulos\eliminar_articulo.html:10
+#: .\articulos\templates\articulos\eliminar_articulo.html:57
+msgid "Eliminar Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:58
+msgid "Inicia sesión o regístrate para gestionar tus artículos."
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:77
+msgid "Autor:"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:77
+msgid "Anónimo"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:80
+msgid "Última Actualización:"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:88
+msgid "Regresar al inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:89
+msgid "Ir al Inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_articulo.html:98
+msgid "Estás viendo los detalles de un artículo."
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:4
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:11
+msgid "Detalles del Tipo de Cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:12
+msgid "Consulta la información detallada sobre los tipos de cambio."
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:17
+msgid "Datos Detallados de Monedas"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:22
+#: .\articulos\templates\articulos\inicio.html:22
+#: .\articulos\templates\articulos\tipos_cambio.html:18
+msgid "Moneda"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:23
+#: .\articulos\templates\articulos\inicio.html:23
+#: .\articulos\templates\articulos\tipos_cambio.html:19
+msgid "Compra"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:24
+#: .\articulos\templates\articulos\inicio.html:24
+#: .\articulos\templates\articulos\tipos_cambio.html:20
+msgid "Venta"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:25
+#: .\articulos\templates\articulos\inicio.html:25
+#: .\articulos\templates\articulos\tipos_cambio.html:21
+#, python-format
+msgid "Variación (%%)"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:41
+#: .\articulos\templates\articulos\inicio.html:40
+#: .\articulos\templates\articulos\tipos_cambio.html:37
+msgid "Sin variación"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:49
+#: .\articulos\templates\articulos\tipos_cambio.html:46
+msgid "No hay datos disponibles en este momento."
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:60
+msgid "Variación Histórica de Tipos de Cambio (2020 - Actualidad)"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:69
+#: .\articulos\templates\articulos\tipos_cambio.html:57
+msgid "Fecha de actualización:"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:70
+#: .\articulos\templates\articulos\tipos_cambio.html:58
+msgid "No disponible"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:77
+msgid "Regresar a Tipos de Cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:95
+msgid "Peso Mexicano (MXN)"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:103
+msgid "Real Brasileño (BRL)"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:111
+msgid "Dólar Canadiense (CAD)"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:134
+msgid "Año"
+msgstr ""
+
+#: .\articulos\templates\articulos\detalle_tipos_cambio.html:141
+msgid "Valor en USD"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:4
+msgid "Editar Artículo - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:12
+msgid ""
+"Modifica el artículo existente y asegúrate de que toda la información sea "
+"precisa y actualizada."
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:18
+msgid "Actualizar Detalles del Artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:46
+msgid "Guardar los cambios realizados al artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:47
+msgid "Guardar Cambios"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:51
+#: .\articulos\templates\articulos\eliminar_articulo.html:62
+msgid "Cancelar y regresar al artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:52
+msgid "¿Estás seguro de que deseas cancelar los cambios?"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:53
+#: .\articulos\templates\articulos\eliminar_articulo.html:63
+msgid "Cancelar"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:61
+msgid "Asegúrate de revisar los detalles antes de guardar los cambios."
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:65
+msgid "Navegación adicional"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:73
+#: .\articulos\templates\articulos\eliminar_articulo.html:78
+#: .\articulos\templates\articulos\logout.html:33
+#: .\articulos\templates\articulos\password_reset.html:65
+#: .\articulos\templates\articulos\password_reset_complete.html:33
+msgid "Regresar a la página de inicio"
+msgstr ""
+
+#: .\articulos\templates\articulos\editar_articulo.html:83
+msgid "Formulario de edición de artículo cargado correctamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:4
+msgid "Eliminar Artículo - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:12
+msgid ""
+"¿Estás seguro de que deseas eliminar este artículo? Esta acción no se puede "
+"deshacer."
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:21
+msgid "No especificado"
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:43
+msgid "¡Advertencia!"
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:44
+msgid "Esta acción es permanente y no se puede deshacer."
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:55
+msgid "Confirmar eliminación del artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:56
+msgid "¿Estás seguro de que deseas eliminar este artículo?"
+msgstr ""
+
+#: .\articulos\templates\articulos\eliminar_articulo.html:88
+msgid ""
+"Estás en la página de eliminación de un artículo. ¡Procede con precaución!"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:4
+msgid "Inicio - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:10
+msgid "Bienvenido a KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:11
+msgid "Explora, Aprende y Crece con nosotros."
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:15
+msgid "Tipos de cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:16
+#: .\articulos\templates\articulos\tipos_cambio.html:5
+msgid "Tipos de Cambio Actualizados"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:48
+msgid "Ver detalles de tipos de cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:49
+msgid "Ver Detalles de Tipos de Cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:52
+msgid "No hay datos de tipos de cambio disponibles actualmente."
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:58
+msgid "Explora, Aprende y Crece"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:59
+msgid ""
+"Descubre artículos sobre filosofía, psicología y negocios, escritos para "
+"inspirar y reflexionar."
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:60
+msgid "Explorar los artículos de KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:61
+msgid "Ver Artículos"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:68
+#: .\articulos\templates\articulos\lista_articulos.html:24
+msgid "¡Bienvenido de nuevo, "
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:69
+msgid "Cerrar sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:73
+msgid "¿Nuevo aquí?"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:74
+msgid "Crear una cuenta en KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:75
+#: .\articulos\templates\articulos\lista_articulos.html:31
+msgid "Crear Cuenta"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:77
+#: .\articulos\templates\articulos\lista_articulos.html:33
+#: .\articulos\templates\articulos\login.html:75
+msgid "Iniciar sesión en KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:85
+#: .\articulos\templates\articulos\lista_articulos.html:41
+msgid "Últimos Artículos"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:91
+msgid "Leer más sobre "
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:96
+msgid "Leer el artículo completo"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:97
+#: .\articulos\templates\articulos\lista_articulos.html:59
+msgid "Leer Más"
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:103
+msgid "No hay artículos disponibles actualmente."
+msgstr ""
+
+#: .\articulos\templates\articulos\inicio.html:122
+msgid "Evolución del Tipo de Cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:4
+msgid "Lista de Artículos - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:10
+msgid "Artículos Recientes en KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:11
+msgid ""
+"Explora, reflexiona y aprende con nuestros artículos más recientes sobre "
+"filosofía, psicología y negocios."
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:15
+msgid "Búsqueda personalizada en la web"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:16
+msgid "Buscar en la Web"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:22
+msgid "Opciones de autenticación"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:25
+msgid "Cerrar sesión para"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:29
+msgid "¿Nuevo aquí? Únete a KAFE KEAN ahora."
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:30
+msgid "Crear una nueva cuenta"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:40
+msgid "Lista de artículos"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:52
+msgid "Leer artículo"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:68
+msgid "No hay artículos disponibles en este momento."
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:73
+msgid "Enlaces de navegación"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:75
+msgid "Ver Todos los Artículos"
+msgstr ""
+
+#: .\articulos\templates\articulos\lista_articulos.html:89
+msgid "Página de lista de artículos cargada correctamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:4
+msgid "Iniciar Sesión - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:12
+msgid "Accede a tu cuenta para disfrutar de todo el contenido de KAFE KEAN."
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:19
+#: .\articulos\templates\articulos\password_reset.html:19
+#: .\articulos\templates\articulos\password_reset_confirm.html:19
+#: .\articulos\templates\articulos\registro.html:18
+msgid "Por favor, corrige los siguientes errores:"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:38
+msgid "Nombre de Usuario o Correo Electrónico"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:53
+msgid "Contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:69
+msgid "Recuérdame"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:86
+msgid "¿Olvidaste tu contraseña? Recupérala aquí"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:91
+msgid "¿No tienes una cuenta? Regístrate aquí"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:106
+msgid "Introduce tu usuario o email"
+msgstr ""
+
+#: .\articulos\templates\articulos\login.html:110
+msgid "Introduce tu contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:4
+msgid "Cierre de Sesión - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:10
+msgid "Has cerrado sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:12
+msgid ""
+"Gracias por visitarnos. Te esperamos pronto para seguir explorando y "
+"aprendiendo juntos."
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:19
+msgid "Ilustración de cierre de sesión exitoso"
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:28
+msgid "Iniciar sesión nuevamente en KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:41
+msgid "¿Necesitas ayuda? Contáctanos en"
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:42
+msgid "soporte@kafekean.com"
+msgstr ""
+
+#: .\articulos\templates\articulos\logout.html:51
+msgid "Has cerrado sesión exitosamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:4
+#: .\articulos\templates\articulos\password_reset_confirm.html:4
+msgid "Restablecer Contraseña - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:10
+#: .\articulos\templates\articulos\password_reset_confirm.html:10
+#: .\articulos\templates\articulos\password_reset_confirm.html:61
+msgid "Restablecer Contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:12
+msgid ""
+"Ingresa tu dirección de correo electrónico para recibir un enlace de "
+"restablecimiento de contraseña."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:36
+msgid "Correo Electrónico"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:50
+msgid "Enviar enlace de restablecimiento de contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:51
+msgid "Enviar Enlace de Restablecimiento"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:60
+msgid "Regresar a la página de inicio de sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:61
+msgid "Volver a Iniciar Sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:76
+#: .\articulos\templates\articulos\password_reset_confirm.html:82
+msgid "Formulario de restablecimiento de contraseña cargado correctamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:79
+msgid "Introduce tu correo electrónico"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset.html:89
+msgid "Por favor, introduce un correo electrónico válido."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:4
+msgid "Contraseña Restablecida - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:10
+msgid "Tu contraseña ha sido restablecida"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:12
+msgid "Ahora puedes iniciar sesión con tu nueva contraseña."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:19
+msgid "Ilustración de contraseña restablecida exitosamente"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:28
+msgid "Iniciar sesión con la nueva contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:41
+msgid "¿Necesitas ayuda adicional?"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:45
+msgid "Enviar un correo a soporte técnico"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_complete.html:55
+msgid "Contraseña restablecida exitosamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:12
+msgid "Ingresa tu nueva contraseña para acceder a tu cuenta."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:38
+msgid "Nueva Contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:49
+msgid "Confirmar Nueva Contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:60
+msgid "Restablecer contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:69
+#: .\articulos\templates\articulos\password_reset_done.html:40
+msgid "Regresar a la página principal"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:72
+#: .\articulos\templates\articulos\registro.html:77
+msgid "Ir a la página de inicio de sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:88
+msgid "Introduce tu nueva contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:91
+msgid "Confirma tu nueva contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_confirm.html:100
+msgid "Las contraseñas no coinciden. Por favor, inténtalo de nuevo."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_done.html:4
+msgid "Correo Enviado - Restablecer Contraseña"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_done.html:10
+msgid "Correo de Restablecimiento Enviado"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_done.html:12
+msgid ""
+"Si la dirección de correo electrónico ingresada está registrada, recibirás "
+"un enlace para restablecer tu contraseña."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_done.html:19
+msgid ""
+"Por favor, revisa tu bandeja de entrada (y la carpeta de correo no deseado) "
+"para seguir las instrucciones."
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_done.html:26
+msgid "Correo enviado"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_done.html:35
+msgid "Volver a la página de inicio de sesión"
+msgstr ""
+
+#: .\articulos\templates\articulos\password_reset_done.html:50
+msgid ""
+"Página de confirmación de envío de restablecimiento de contraseña cargada "
+"correctamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:12
+msgid ""
+"Encuentra respuestas a las dudas más comunes. Actualizadas dinámicamente "
+"gracias a nuestra integración con IA."
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:18
+msgid "Buscar en preguntas frecuentes..."
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:18
+msgid "Buscar en preguntas frecuentes"
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:19
+msgid "Buscar"
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:41
+msgid "No hay preguntas frecuentes disponibles en este momento."
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:48
+msgid ""
+"¿No encuentras lo que buscas? ¡Nuestra IA está siempre actualizando las "
+"respuestas!"
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:50
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:86
+msgid "Actualizar Preguntas con IA"
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:81
+msgid "Actualizando..."
+msgstr ""
+
+#: .\articulos\templates\articulos\preguntas_frecuentes.html:85
+msgid "¡Las preguntas frecuentes se han actualizado con la última información!"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:5
+msgid "Registrar Cuenta - KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:11
+msgid "Crear una Cuenta Nueva"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:12
+msgid "Completa el formulario para unirte a KAFE KEAN."
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:54
+msgid "Crear cuenta en KAFE KEAN"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:66
+msgid "O regístrate con:"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:67
+#: .\articulos\templates\articulos\registro.html:69
+msgid "Registrarse con Google"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:68
+msgid "Google Icon"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:76
+msgid "¿Ya tienes una cuenta?"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:78
+msgid "Inicia sesión aquí"
+msgstr ""
+
+#: .\articulos\templates\articulos\registro.html:88
+msgid "Formulario de registro cargado correctamente."
+msgstr ""
+
+#: .\articulos\templates\articulos\tipos_cambio.html:4
+msgid "Sección de Tipos de Cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\tipos_cambio.html:7
+msgid ""
+"Consulta los últimos tipos de cambio de las principales monedas en tiempo "
+"real."
+msgstr ""
+
+#: .\articulos\templates\articulos\tipos_cambio.html:12
+msgid "Tabla con tipos de cambio actualizados"
+msgstr ""
+
+#: .\articulos\templates\articulos\tipos_cambio.html:14
+msgid ""
+"Tabla que muestra los tipos de cambio de diferentes monedas respecto al "
+"dólar."
+msgstr ""
+
+#: .\articulos\templates\articulos\tipos_cambio.html:64
+msgid "Ver detalles de los tipos de cambio"
+msgstr ""
+
+#: .\articulos\templates\articulos\tipos_cambio.html:65
+msgid "Ver Detalles Completos"
+msgstr ""
+
+#: .\articulos\templates\articulos\tipos_cambio.html:74
+msgid "Sección de tipos de cambio cargada correctamente."
+msgstr ""
+
+#: .\articulos\urls.py:22
+msgid "crear/"
+msgstr ""
+
+#: .\articulos\urls.py:31
+msgid "tipos_cambio/"
+msgstr ""
+
+#: .\articulos\urls.py:32
+msgid "tipos_cambio/detalle/"
+msgstr ""
+
+#: .\articulos\urls.py:35
+msgid "cambiar_idioma/<str:idioma>/"
+msgstr ""
+
+#: .\articulos\urls.py:38
+msgid "preguntas-frecuentes/"
+msgstr ""
+
+#: .\articulos\urls.py:39
+msgid "contactanos/"
+msgstr ""
+
+#: .\articulos\urls.py:44
+msgid "registro/"
+msgstr ""
+
+#: .\articulos\urls.py:45
+msgid "login/"
+msgstr ""
+
+#: .\articulos\urls.py:46
+msgid "logout/"
+msgstr ""
+
+#: .\articulos\urls.py:47
+msgid "password_reset/"
+msgstr ""
+
+#: .\articulos\urls.py:48
+msgid "password_reset/done/"
+msgstr ""
+
+#: .\articulos\urls.py:49
+msgid "reset/<uidb64>/<token>/"
+msgstr ""
+
+#: .\articulos\urls.py:50
+msgid "reset/done/"
+msgstr ""
+
+#: .\articulos\views.py:55
+msgid "Idioma cambiado exitosamente."
+msgstr ""
+
+#: .\articulos\views.py:125
+msgid "Artículo creado exitosamente."
+msgstr ""
+
+#: .\articulos\views.py:127
+msgid "Hubo un error al crear el artículo."
+msgstr ""
+
+#: .\articulos\views.py:139
+msgid "Artículo editado exitosamente."
+msgstr ""
+
+#: .\articulos\views.py:150
+msgid "Artículo eliminado exitosamente."
+msgstr ""
+
+#: .\articulos\views.py:168
+msgid "Cuenta creada exitosamente. ¡Ahora puedes iniciar sesión!"
+msgstr ""
+
+#: .\articulos\views.py:187
+msgid "Mensaje enviado exitosamente."
+msgstr ""

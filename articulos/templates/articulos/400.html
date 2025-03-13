@@ -1,0 +1,48 @@
+{% extends 'articulos/base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Error 400 - Solicitud Incorrecta" %}{% endblock %}
+
+{% block content %}
+<div class="container-error text-center">
+    <!-- ✅ Encabezado de Error -->
+    <header class="section-header">
+        <h1 class="error-title">{% trans "400 - Solicitud Incorrecta" %}</h1>
+        <p class="error-subtitle">
+            {% trans "La solicitud que realizaste no es válida o está mal formada. Por favor, revisa los datos e inténtalo de nuevo." %}
+        </p>
+    </header>
+
+    <!-- ✅ Opciones de Navegación -->
+    <section class="section-navigation">
+        <p>{% trans "Puedes intentar las siguientes opciones:" %}</p>
+        <div class="error-actions">
+            <a href="{% url 'inicio' %}" class="btn btn-primary" aria-label="{% trans 'Volver al Inicio' %}">
+                🏠 {% trans "Volver al Inicio" %}
+            </a>
+            <a href="{% url 'articulos:lista_articulos' %}" class="btn btn-secondary" aria-label="{% trans 'Explorar Artículos' %}">
+                📚 {% trans "Explorar Artículos" %}
+            </a>
+            <a href="javascript:history.back()" class="btn btn-tertiary" aria-label="{% trans 'Regresar a la página anterior' %}">
+                ↩️ {% trans "Regresar a la página anterior" %}
+            </a>
+        </div>
+    </section>
+
+    <!-- ✅ Ilustración de Error -->
+    <section class="section-illustration">
+        <img src="{% static 'img/error_400.svg' %}" 
+             alt="{% trans 'Ilustración de error 400' %}" 
+             class="error-image" 
+             style="max-width: 400px; height: auto;">
+    </section>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.warn('{% trans "Error 400: Solicitud Incorrecta. Revisa los datos enviados." %}');
+    });
+</script>
+{% endblock %}

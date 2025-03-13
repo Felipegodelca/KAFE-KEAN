@@ -1,0 +1,79 @@
+{% load static i18n %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{% trans 'Error 500 - Error Interno del Servidor en KAFE KEAN' %}">
+    <meta name="author" content="KAFE KEAN">
+    <meta name="robots" content="noindex, nofollow">
+    <title>{% trans "Error 500 - Error Interno del Servidor" %}</title>
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+
+<body>
+    <!-- ✅ Encabezado de Error -->
+    <header class="site-header error-header text-center">
+        <div class="logo-container">
+            <a href="{% url 'inicio' %}" aria-label="{% trans 'Ir a la página de inicio' %}">
+                <img src="{% static 'img/kafe_kean_logo.jpg' %}" 
+                     alt="{% trans 'Logo de KAFE KEAN' %}" 
+                     class="site-logo">
+            </a>
+        </div>
+        <h1 class="error-title">{% trans "500 - Error Interno del Servidor" %}</h1>
+    </header>
+
+    <!-- ✅ Contenido Principal -->
+    <main class="error-container text-center">
+        <section class="error-content">
+            <h2>{% trans "¡Ups! Algo salió mal." %}</h2>
+            <p>{% trans "Parece que ocurrió un error inesperado en nuestro servidor." %}</p>
+            <p>{% trans "Estamos trabajando para solucionarlo lo más rápido posible." %}</p>
+            <div class="error-actions">
+                <a href="{% url 'inicio' %}" 
+                   class="btn btn-primary" 
+                   aria-label="{% trans 'Volver a la página de inicio' %}">
+                    🏠 {% trans "Volver al Inicio" %}
+                </a>
+                <a href="javascript:history.back()" 
+                   class="btn btn-secondary" 
+                   aria-label="{% trans 'Regresar a la página anterior' %}">
+                    ↩️ {% trans "Regresar a la página anterior" %}
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ✅ Información de Contacto -->
+    <footer class="error-footer text-center">
+        <p>{% trans "Si el problema persiste, no dudes en ponerte en contacto con nuestro equipo de soporte:" %}</p>
+        <a href="mailto:soporte@kafekean.com" 
+           class="btn btn-contact" 
+           aria-label="{% trans 'Contactar al soporte técnico' %}">
+            📧 {% trans "Contactar Soporte" %}
+        </a>
+    </footer>
+
+    <!-- ✅ Pie de Página -->
+    <footer class="site-footer text-center">
+        <p>{% trans "© 2025 KAFE KEAN. Todos los derechos reservados." %}</p>
+        <nav>
+            <ul class="footer-nav">
+                <li><a href="{% url 'inicio' %}">{% trans "Inicio" %}</a></li>
+                <li><a href="{% url 'articulos:lista_articulos' %}">{% trans "Artículos" %}</a></li>
+                <li><a href="{% url 'articulos:contactanos' %}">{% trans "Contacto" %}</a></li>
+            </ul>
+        </nav>
+    </footer>
+
+    <!-- ✅ Script Adicional -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.error('{% trans "Se ha producido un error interno del servidor (Error 500)." %}');
+        });
+    </script>
+</body>
+</html>
