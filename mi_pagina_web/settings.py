@@ -26,10 +26,11 @@ DEBUG = env.bool("DEBUG", default=False) #En produccion
 ALLOWED_HOSTS = [
     '127.0.0.1',    
     'localhost',    
-    '192.168.100.11',  # ✅ Mantiene acceso desde la red local
-    'kafekean.com',    # ✅ Agrega tu dominio personalizado
-    'www.kafekean.com', # ✅ Agrega con "www"
-    '.vercel.app',      # ✅ Permite subdominios de Vercel
+    '192.168.100.11',  
+    'kafekean.com',    
+    'www.kafekean.com', 
+    '.vercel.app',      
+    'kafe-kean-772nv5qfu-felipe-gomez-del-campos-projects.vercel.app',  # 🚀 Agrega la URL exacta de Vercel
 ]
 
 # ✅ Evita problemas con CSRF cuando accedes desde otro dispositivo
