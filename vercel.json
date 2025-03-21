@@ -1,4 +1,4 @@
-{ 
+{
   "version": 2,
   "builds": [
     {
@@ -11,5 +11,11 @@
       "src": "/(.*)",
       "dest": "mi_pagina_web/wsgi.py"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "DATABASE_URL": "@DATABASE_URL",
+      "DJANGO_SECRET_KEY": "@DJANGO_SECRET_KEY"
+    }
+  }
 }
