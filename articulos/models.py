@@ -3,7 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 from django.utils.text import slugify
-from PIL import Image  # Para validar imágenes
+#from PIL import Image  # Para validar imágenes
 
 
 class Articulo(models.Model):
@@ -66,15 +66,15 @@ class Articulo(models.Model):
         if self.etiquetas and len(self.etiquetas.split(',')) > 10:
             raise ValidationError(_('No puedes agregar más de 10 etiquetas.'))
 
-        if self.imagen:
-            try:
-                img = Image.open(self.imagen)
-                if img.format.lower() not in ['jpeg', 'png']:
-                    raise ValidationError(_('Solo se permiten imágenes JPEG o PNG.'))
-                if self.imagen.size > 5 * 1024 * 1024:
-                    raise ValidationError(_('El tamaño de la imagen no puede exceder los 5MB.'))
-            except Exception:
-                raise ValidationError(_('La imagen proporcionada no es válida.'))
+    #   if self.imagen:
+    #       try:
+    #           img = Image.open(self.imagen)
+    #           if img.format.lower() not in ['jpeg', 'png']:
+    #               raise ValidationError(_('Solo se permiten imágenes JPEG o PNG.'))
+    #           if self.imagen.size > 5 * 1024 * 1024:
+    #               raise ValidationError(_('El tamaño de la imagen no puede exceder los 5MB.'))
+    #       except Exception:
+    #          raise ValidationError(_('La imagen proporcionada no es válida.'))
 
     def save(self, *args, **kwargs):
         """
