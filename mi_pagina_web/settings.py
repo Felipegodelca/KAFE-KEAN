@@ -29,13 +29,14 @@ DEBUG = env.bool("DEBUG", default=False)
 # ==========================
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[
     '127.0.0.1', 'localhost', '192.168.100.11',
-    'kafekean.com', 'www.kafekean.com', '.vercel.app',
-    'kafe-kean-772nv5qfu-felipe-gomez-del-campos-projects.vercel.app'
+    'kafekean.com', 'www.kafekean.com'
 ])
 
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS', default=[
-    "http://127.0.0.1", "http://localhost", "http://192.168.100.11"
+    "http://127.0.0.1", "http://localhost", "http://192.168.100.11",
+    "https://kafekean.com", "https://www.kafekean.com"
 ])
+
 
 # ==========================
 # 🛠️ CONFIGURACIÓN DE BASE DE DATOS
@@ -171,7 +172,7 @@ UNSPLASH_SECRET_KEY = env('UNSPLASH_SECRET_KEY', default='tu_unsplash_secret_key
 # ==========================
 # 🤖 CONFIGURACIÓN DE OPENROUTER API
 # ==========================
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = env("OPENROUTER_API_KEY")
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 # ==========================
