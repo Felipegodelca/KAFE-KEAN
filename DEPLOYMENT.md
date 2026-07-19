@@ -40,16 +40,19 @@ La URL de conexión es un secreto: nunca debe entrar al repositorio ni al chat.
 ## 3. Variables de Vercel
 
 En el proyecto, abre **Settings > Environment Variables** y crea estas
-variables para **Production**:
+variables para **Production** y **Preview**:
 
 ```text
-DJANGO_DEBUG=0
+DJANGO_DEBUG=False
 DJANGO_SECRET_KEY=<clave nueva y aleatoria>
 DATABASE_URL=<URL nueva del Transaction pooler con ?sslmode=require>
-DJANGO_ALLOWED_HOSTS=kafekean.com,www.kafekean.com,.vercel.app
-DJANGO_CSRF_TRUSTED_ORIGINS=https://kafekean.com,https://www.kafekean.com
+DJANGO_ALLOWED_HOSTS=kafe-kean.vercel.app,.vercel.app,.kafekean.com,kafekean.com,www.kafekean.com
+DJANGO_CSRF_TRUSTED_ORIGINS=https://*.vercel.app,https://kafekean.com,https://www.kafekean.com
 UNSPLASH_ACCESS_KEY=<opcional>
 ```
+
+Después de cambiar variables, crea un deployment nuevo desde `main`. Si usas
+**Redeploy** sobre un deployment viejo, Vercel reconstruirá el commit viejo.
 
 ## 4. Crear tablas y administrador
 
