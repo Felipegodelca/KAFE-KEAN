@@ -1,8 +1,0 @@
-# Ignorar archivos de configuración sensibles
-.env
-.env.consolidado
-*.sqlite3
-__pycache__/
-db.sqlite3
-/media/
-/staticfiles/

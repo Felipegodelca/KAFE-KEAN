@@ -1,14 +1,14 @@
-{% extends 'articulos/form_base.html' %}
+{% extends 'articulos/base.html' %}
 {% load i18n %}
-{% block title %}{% trans "Crear Artículo - KAFE KEAN" %}{% endblock %}
+
 {% block content %}
 <div class="container form-shell">
-    <h1>{% trans "Crear Artículo" %}</h1>
+    <h1>{{ page_title }}</h1>
     <form method="post" enctype="multipart/form-data" class="form-card">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="button-row">
-            <button type="submit" class="btn btn-primary">{% trans "Guardar" %}</button>
+            <button type="submit" class="btn btn-primary">{{ submit_label }}</button>
             <a href="{% url 'articulos:lista_articulos' %}" class="btn btn-outline-primary">{% trans "Cancelar" %}</a>
         </div>
     </form>

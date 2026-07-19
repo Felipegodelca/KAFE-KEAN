@@ -1,0 +1,40 @@
+{% extends 'articulos/base.html' %}
+{% load i18n %}
+{% block title %}{% trans "KAFE KEAN AI - Resultados" %}{% endblock %}
+{% block content %}
+<div class="container page-stack">
+    <section class="panel ai-page">
+        <p class="eyebrow">KAFE KEAN AI</p>
+        <h1>{% trans "Resultados del Algoritmo" %}</h1>
+        {% if mejor_accion and esfuerzo_final %}
+            <p class="lead">{% trans "Mejor acción recomendada:" %} <strong class="text-success">{{ mejor_accion }}</strong></p>
+            <p>{% trans "Esfuerzo final optimizado:" %} <strong>{{ esfuerzo_final|floatformat:2 }}</strong></p>
+        {% else %}
+            <p class="text-muted">{% trans "Los resultados del algoritmo no están disponibles en este momento." %}</p>
+        {% endif %}
+    </section>
+    <section class="panel">
+        <h2>{% trans "Recompensas recientes" %}</h2>
+        <canvas id="grafico-recompensas" height="120"></canvas>
+    </section>
+</div>
+{% endblock %}
+{% block extra_scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{ recompensas|json_script:"recompensas-data" }}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const ctx = document.getElementById('grafico-recompensas');
+    if (!ctx || !window.Chart) return;
+    const recompensas = JSON.parse(document.getElementById('recompensas-data').textContent);
+    new Chart(ctx.getContext('2d'), {
+        type: 'line',
+        data: {
+            labels: recompensas.map((_, index) => index + 1),
+            datasets: [{ data: recompensas, borderColor: '#18BC9C', backgroundColor: 'rgba(24,188,156,.14)', fill: true, tension: .35 }]
+        },
+        options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
+    });
+});
+</script>
+{% endblock %}
