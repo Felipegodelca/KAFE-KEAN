@@ -6,25 +6,50 @@ import dj_database_url
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-kafe-kean-secret-key")
-DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
+
+
+def env_bool(*names, default="0"):
+    for name in names:
+        value = os.environ.get(name)
+        if value is not None:
+            return value.lower() in {"1", "true", "yes", "on"}
+    return default.lower() in {"1", "true", "yes", "on"}
+
+
+DEBUG = env_bool("DJANGO_DEBUG", "DEBUG", default="0" if os.environ.get("VERCEL") else "1")
 IS_PRODUCTION = not DEBUG
 
 if IS_PRODUCTION and SECRET_KEY == "dev-only-kafe-kean-secret-key":
     raise RuntimeError("DJANGO_SECRET_KEY es obligatoria en producción.")
 
 
-def env_list(name, default):
-    return [value.strip() for value in os.environ.get(name, default).split(",") if value.strip()]
+def env_list(names, default):
+    if isinstance(names, str):
+        names = [names]
+    for name in names:
+        value = os.environ.get(name)
+        if value:
+            return [item.strip() for item in value.split(",") if item.strip()]
+    return [item.strip() for item in default.split(",") if item.strip()]
 
 
 ALLOWED_HOSTS = env_list(
-    "DJANGO_ALLOWED_HOSTS",
+    ["DJANGO_ALLOWED_HOSTS", "ALLOWED_HOSTS"],
     "127.0.0.1,localhost" if DEBUG else "kafekean.com,www.kafekean.com,.vercel.app",
 )
 CSRF_TRUSTED_ORIGINS = env_list(
-    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    ["DJANGO_CSRF_TRUSTED_ORIGINS", "CSRF_TRUSTED_ORIGINS"],
     "https://kafekean.com,https://www.kafekean.com",
 )
+
+vercel_host = os.environ.get("VERCEL_URL") or os.environ.get("VERCEL_BRANCH_URL")
+if vercel_host:
+    vercel_host = vercel_host.removeprefix("https://").removeprefix("http://").strip("/")
+    if vercel_host and vercel_host not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(vercel_host)
+    vercel_origin = f"https://{vercel_host}"
+    if vercel_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(vercel_origin)
 
 INSTALLED_APPS = [
     "django.contrib.admin",
