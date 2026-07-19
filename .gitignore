@@ -1,19 +1,13 @@
-# Ignorar archivos de configuración sensibles
 .env
-.env.consolidado
-
-# Ignorar archivos compilados de Python
+.env.*
+!.env.example
+.venv/
+venv/
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
-
-# Archivos de base de datos SQLite
+*.py[cod]
 db.sqlite3
-
-# Directorios de archivos generados
-/media/
+media/
 staticfiles/
-
-# Configuración de Vercel
-.vercel
+.vercel/
+My KEAN/
+reconstruction-notes.md
